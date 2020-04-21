@@ -15,7 +15,7 @@ public class PlanTest {
 
         ArrayList<String> expectedFriends = new ArrayList<>();
         expectedFriends.add("60774491");
-        plan = new Plan("Postpago");
+        plan = new Plan("Prepago");
         plan.receiveable = "Ninguno";
         plan.loyaltyYears = 0;
         plan.friends.add("60774491");
