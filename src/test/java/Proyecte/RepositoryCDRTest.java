@@ -20,10 +20,10 @@ public class RepositoryCDRTest {
     @Test
     public void retrieveCDR() {
         final CallRecord record = repositoryCDR.records.get(0);
-        assertEquals(record.clienteOrigen, client1);
-        assertEquals(record.clienteDestino, client2);
-        assertEquals(record.fecha, "23");
-        assertEquals(record.horarioInicio, "5");
+        assertEquals(record.callerClient, client1);
+        assertEquals(record.endpointClient, client2);
+        assertEquals(record.date, "23");
+        assertEquals(record.startingTime, "5");
     }
 
 }

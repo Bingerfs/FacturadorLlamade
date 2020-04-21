@@ -1,13 +1,13 @@
 package Proyecte;
 
 public class Client {
-    String nombre;
-    String telefono;
+    String name;
+    String phoneNumber;
     Plan plan;
 
-    public Client(String nombre, String telefono){
-        this.nombre = nombre;
-        this.telefono = telefono;
+    public Client(final String name, final String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
     }
 
 }

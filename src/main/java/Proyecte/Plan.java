@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Plan {
     String type;
     ArrayList<String> friends;
-    Integer antiguedad;
-    Integer saldo;
-    String abono;
+    Integer loyaltyYears;
+    Integer balance;
+    String receiveable;
     IRateCalculator rateCalculator;
     public Plan(String type) {
         switch(type){

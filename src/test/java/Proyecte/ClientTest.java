@@ -9,8 +9,8 @@ import org.junit.Test;
 public class ClientTest {
     @Test
     public void createClient(){
-        Client cliente = new Client("Hector", "12345");
-        assertEquals("Error while creating Client", cliente.telefono, "12345");
+        Client client = new Client("Hector", "12345");
+        assertEquals("Error while creating Client", client.phoneNumber, "12345");
     }
     
 

@@ -13,7 +13,7 @@ public class RepositoryCDR {
     public ArrayList<CallRecord> searchRepositoriesByNumber(String telefono){
         ArrayList<CallRecord> retrievedRecords = new ArrayList<>();
         records.forEach(record -> {
-            if(record.clienteOrigen.telefono == telefono)
+            if(record.callerClient.phoneNumber == telefono)
                 retrievedRecords.add(record);
         });
         return retrievedRecords;
