@@ -1,6 +1,7 @@
 package Proyecte;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RateCalculatorPrepago implements IRateCalculator{
 	
@@ -20,15 +21,14 @@ public class RateCalculatorPrepago implements IRateCalculator{
         this.schedule = schedule;
     }
 
-	@Override
-	public Float calculateRate() {
-		totalRate = (float)0;
+    @Override
+    public Float calculateRate(List<String> friends, String endpointNumber) {
+        totalRate = (float)0;
 		IRateCalculatorBySchedule iRateCalculatorBySchedule = schedule;
         ratePerMinute = iRateCalculatorBySchedule.getRatePerMinute();
         totalRate = duration*ratePerMinute;
         return totalRate;
-	}
-	
+    }
 	
 	
 	
