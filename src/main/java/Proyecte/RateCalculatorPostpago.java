@@ -9,14 +9,18 @@ import java.util.List;
 public class RateCalculatorPostpago implements IRateCalculator {
 
     Float ratePerMinute = (float) 1;
+    Float callDuration;
+
+    RateCalculatorPostpago(Float callDuration){
+        this.callDuration = callDuration;
+    }
 
     @Override
-    public Float calculateRate(Float duracion, List<String> friends, String endpointNumber) {
+    public Float calculateRate(List<String> friends, String endpointNumber) {
         Float totalRate = (float) 0;
         if(!friends.contains(endpointNumber))
-            totalRate = duracion * ratePerMinute; 
+            totalRate = callDuration * ratePerMinute; 
         return totalRate;
-
     }
     
     

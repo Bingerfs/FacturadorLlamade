@@ -71,6 +71,8 @@ public class PlanTest {
         assertEquals(expected, rate);
     }
 
+    
+    @Test
     public void calculatePostpago(){
         Float callLength = (float) 60;
         IRateCalculator calculador = new RateCalculatorPostpago(callLength);
