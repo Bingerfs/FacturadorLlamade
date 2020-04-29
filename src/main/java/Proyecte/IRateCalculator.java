@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface IRateCalculator {
 
-    Float calcularTarifa(Float duracion, List<String> friends, String endpointNumber);
+    Float calculateRate(Float duracion, List<String> friends, String endpointNumber);
 }
