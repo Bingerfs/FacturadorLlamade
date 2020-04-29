@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import java.util.List;
@@ -61,6 +62,31 @@ public class PlanTest {
     public void calculateWowFriend(){
         Float callLength = (float) 60;
         IRateCalculator calculador = new RateCalculatorWow(callLength);
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        friends.add("79789704");
+        friends.add("79789705");
+        Float expected = (float) 0;
+        Float rate = calculador.calculateRate(friends, "60774491");
+        assertEquals(expected, rate);
+    }
+
+    public void calculatePostpago(){
+        Float callLength = (float) 60;
+        IRateCalculator calculador = new RateCalculatorPostpago(callLength);
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        friends.add("79789704");
+        friends.add("79789705");
+        Float expected = (float) 60;
+        Float rate = calculador.calculateRate(friends, "75757575");
+        assertEquals(expected, rate);
+    }
+    
+    @Test
+    public void calculatePostpagoFriend(){
+        Float callLength = (float) 60;
+        IRateCalculator calculador = new RateCalculatorPostpago(callLength);
         List<String> friends = new ArrayList<>();
         friends.add("60774491");
         friends.add("79789704");

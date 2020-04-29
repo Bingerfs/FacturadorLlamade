@@ -6,6 +6,7 @@ import java.util.List;
 public interface IRateCalculator {
 
 
+
     Float calculateRate(List<String> friends, String endpointNumber);
 
 }
