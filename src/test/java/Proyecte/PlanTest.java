@@ -8,23 +8,37 @@ import org.junit.Test;
 
 public class PlanTest {
 
-    private Plan plan;
-
     @Test
-    public void createPlanPrepago(){
-
-        ArrayList<String> expectedFriends = new ArrayList<>();
-        expectedFriends.add("60774491");
-        plan = new Plan("Prepago");
-        plan.receiveable = "Ninguno";
-        plan.loyaltyYears = 0;
-        plan.friends.add("60774491");
-        assertEquals("Ninguno", plan.receiveable);
-        assertEquals((Integer)0, plan.loyaltyYears);
-        assertEquals(expectedFriends, plan.friends);
-        assertEquals(RateCalculatorPresaldo.class, plan.rateCalculator.getClass());
+    public void calculateNormalSchedulePrepago() {
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60);
+    	IRateCalculatorBySchedule schedule = new NormalSchedulePrepago();
+    	Float result = calculator.calculateRate(null, schedule );
+    	Float expected = (float) 87.0;
+    	assertEquals(expected, result);
+    	
+    }
+    
+    @Test
+    public void calculateReduceSchedulePrepago() {
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60);
+    	IRateCalculatorBySchedule schedule = new ReduceSchedulePrepago();
+    	Float result = calculator.calculateRate(null, schedule );
+    	Float expected = (float) 57.0;
+    	assertEquals(expected, result);
+    	
     }
 
+    @Test
+    public void calculateSuperReduceSchedulePrepago() {
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60);
+    	IRateCalculatorBySchedule schedule = new SuperReduceSchedulePrepago();
+    	Float result = calculator.calculateRate(null, schedule );
+    	Float expected = (float) 42.0;
+    	assertEquals(expected, result);
+    	
+    }
+    
+  
     
 
 }

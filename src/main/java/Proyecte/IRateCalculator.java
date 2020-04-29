@@ -4,5 +4,5 @@ import java.util.ArrayList;
 
 public interface IRateCalculator {
 
-    Float calcularTarifa(ArrayList<String> friends);
+    Float calculateRate(ArrayList<String> friends, IRateCalculatorBySchedule schedule);
 }
