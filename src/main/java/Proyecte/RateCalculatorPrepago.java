@@ -9,23 +9,24 @@ public class RateCalculatorPrepago implements IRateCalculator{
     private float ratePerMinute;
     private float totalRate;
     private float duration;
+    private IRateCalculatorBySchedule schedule;
 
 
-    public RateCalculatorPrepago( float duration) {
+    public RateCalculatorPrepago( float duration, IRateCalculatorBySchedule schedule) {
       
         this.ratePerMinute = (float)0;
         this.duration = duration;
         this.totalRate = 0;
+        this.schedule = schedule;
     }
 
 	@Override
-	public Float calculateRate(ArrayList<String> friends, IRateCalculatorBySchedule schedule) {
+	public Float calculateRate() {
 		totalRate = (float)0;
 		IRateCalculatorBySchedule iRateCalculatorBySchedule = schedule;
-        ratePerMinute = schedule.getRatePerMinute();
+        ratePerMinute = iRateCalculatorBySchedule.getRatePerMinute();
         totalRate = duration*ratePerMinute;
-            return totalRate;
-      
+        return totalRate;
 	}
 	
 	

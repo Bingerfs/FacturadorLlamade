@@ -10,9 +10,9 @@ public class PlanTest {
 
     @Test
     public void calculateNormalSchedulePrepago() {
-    	IRateCalculator calculator = new RateCalculatorPrepago((float)60);
-    	IRateCalculatorBySchedule schedule = new NormalSchedulePrepago();
-    	Float result = calculator.calculateRate(null, schedule );
+        IRateCalculatorBySchedule schedule = new NormalSchedulePrepago();
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60, schedule);
+    	Float result = calculator.calculateRate();
     	Float expected = (float) 87.0;
     	assertEquals(expected, result);
     	
@@ -20,9 +20,9 @@ public class PlanTest {
     
     @Test
     public void calculateReduceSchedulePrepago() {
-    	IRateCalculator calculator = new RateCalculatorPrepago((float)60);
-    	IRateCalculatorBySchedule schedule = new ReduceSchedulePrepago();
-    	Float result = calculator.calculateRate(null, schedule );
+        IRateCalculatorBySchedule schedule = new ReduceSchedulePrepago();
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60, schedule);
+    	Float result = calculator.calculateRate();
     	Float expected = (float) 57.0;
     	assertEquals(expected, result);
     	
@@ -30,9 +30,9 @@ public class PlanTest {
 
     @Test
     public void calculateSuperReduceSchedulePrepago() {
-    	IRateCalculator calculator = new RateCalculatorPrepago((float)60);
-    	IRateCalculatorBySchedule schedule = new SuperReduceSchedulePrepago();
-    	Float result = calculator.calculateRate(null, schedule );
+        IRateCalculatorBySchedule schedule = new SuperReduceSchedulePrepago();
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60, schedule);
+    	Float result = calculator.calculateRate();
     	Float expected = (float) 42.0;
     	assertEquals(expected, result);
     	
