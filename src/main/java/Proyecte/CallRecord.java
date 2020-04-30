@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CallRecord {
+    int id_callRecord;
     String callerPhoneNumber;
     String endPointPhoneNumber;
     String date;
