@@ -13,9 +13,11 @@ public class CallRecord {
     Float callCost;
 
     public void calculateCost(IPlanClient plan){
-    	List<String> friends = new ArrayList<>();//friendgetterfromClient through Phone number
-        friends.add("60774491");
-        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(callDuration, plan, friends, startingCallTime); 
+        IPlanClient planClient = RepositoryClientPlan.findByPhoneNumber(callerPhoneNumber);
+        System.out.println("idek");
+        List<Object> planClientData = planClient.getInformationOfClient();
+        System.out.println(planClientData);
+        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(callDuration, planClient, planClientData, startingCallTime); 
         callCost = calculator.calculateRate(endPointPhoneNumber);
     }
 

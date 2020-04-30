@@ -27,6 +27,13 @@ public class PlanClientPostpago implements IPlanClient {
         return clientPLanData;
     }
 
+    @Override
+    public IPlanClient getByPhoneNumber(String phoneNumber) {
+        if(phoneNumber == this.phoneNumber)
+            return this;
+        return null;
+    }
+
     
     
 

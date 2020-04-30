@@ -23,4 +23,6 @@ public class RateCalculatorWow implements IRateCalculator{
         return totalRate;
     }
 
+    
+
 }

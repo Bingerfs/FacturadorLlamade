@@ -25,7 +25,8 @@ public class CDRTest {
         record.callDuration = (float)60;
         record.callerPhoneNumber = "00000000";
         record.endPointPhoneNumber = "60774491";
-        record.startingTime = 4;
+        record.startingCallTime = 4;
+        RepositoryClientPlan.add(plan);
         record.calculateCost(plan);
         CDR.addCDR(record);
         assertEquals(true, CDR.FindCDRbyId(1));
@@ -48,21 +49,22 @@ public class CDRTest {
         record.callDuration = (float)60;
         record.callerPhoneNumber = "00000000";
         record.endPointPhoneNumber = "60774491";
-        record.startingTime = 4;
+        record.startingCallTime = 4;
 
         CallRecord record1 = new CallRecord();
         record1.id_callRecord =2;
         record1.callDuration = (float)60;
         record1.callerPhoneNumber = "00000000";
         record1.endPointPhoneNumber = "60774491";
-        record1.startingTime = 4;
+        record1.startingCallTime = 4;
 
         CallRecord record2 = new CallRecord();
         record1.id_callRecord =3;
         record1.callDuration = (float)60;
         record1.callerPhoneNumber = "00000000";
         record1.endPointPhoneNumber = "60774491";
-        record1.startingTime = 4;
+        record1.startingCallTime = 4;
+        RepositoryClientPlan.add(plan);
         record1.calculateCost(plan);
         CDR.addCDR(record);
         CDR.addCDR(record1);

@@ -17,10 +17,10 @@ public class CallRecordTest {
         Client client = new Client();
         client.address="asd";
         client.ci = "12345";
-        List<String> friends = new ArrayList<>();//friendgetterfromClient through Phone number
+        List<String> friends = new ArrayList<>();
         friends.add("60774491");
-
         IPlanClient plan = new PlanClientPostpago(client, "00000000", friends);
+        RepositoryClientPlan.add(plan);
         CallRecord record = new CallRecord();
         record.callDuration = (float)60;
         record.callerPhoneNumber = "00000000";
