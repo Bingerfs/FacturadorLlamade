@@ -19,10 +19,11 @@ public class RateCalculatorPrepago implements IRateCalculator{
         this.duration = duration;
         this.totalRate = 0;
         this.schedule = schedule;
+        
     }
 
     @Override
-    public Float calculateRate(List<String> friends, String endpointNumber) {
+    public Float calculateRate(String endpointNumber) {
         totalRate = (float)0;
 		IRateCalculatorBySchedule iRateCalculatorBySchedule = schedule;
         ratePerMinute = iRateCalculatorBySchedule.getRatePerMinute();
