@@ -122,6 +122,15 @@ public class CallRecordTest {
         assertEquals(plan, plan.getByPhoneNumber("00000000"));
     }
     @Test
+    public void GetPhoneFalseClientPrepago(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        
+        IPlanClient plan = new PlanClientPrepago(client, "00000000");
+        assertEquals(null, plan.getByPhoneNumber("00006000"));
+    }
+    @Test
     public void GetPhoneFalsefClientPrepago(){
     	Client client = new Client();
         client.address="asd";
