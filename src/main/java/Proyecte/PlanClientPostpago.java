@@ -14,6 +14,8 @@ public class PlanClientPostpago implements IPlanClient {
         this.client = client;
         this.phoneNumber = phoneNumber;
         this.friends = friends;
+        this.balance = "0";
+        this.receivables = "0";
     }
 
     @Override
@@ -25,6 +27,13 @@ public class PlanClientPostpago implements IPlanClient {
         clientPLanData.add(receivables);
         clientPLanData.add(friends);
         return clientPLanData;
+    }
+
+    @Override
+    public IPlanClient getByPhoneNumber(String phoneNumber) {
+        if(phoneNumber == this.phoneNumber)
+            return this;
+        return null;
     }
 
     

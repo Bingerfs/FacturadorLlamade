@@ -1,6 +1,10 @@
 package Proyecte;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -16,5 +20,19 @@ public class AppTest
     public void shouldAnswerWithTrue()
     {
         assertTrue( true );
+    }
+    @Test
+    public void initializeCallRecordsTests()
+    {
+    	List<CallRecord> callRecords = new ArrayList<>();
+        CallRecord callRecord = new CallRecord();
+        callRecord.callerPhoneNumber = "00000000";
+        callRecord.callDuration = (float) 60;
+        callRecord.startingCallTime = 12;
+        callRecord.endPointPhoneNumber = "79789705";
+        callRecords.add(callRecord);
+       
+        callRecords =App.initializeCallRecords();
+        assertEquals( callRecord.callCost,callRecords.get(0).callCost );
     }
 }

@@ -12,13 +12,12 @@ public class CDRTest {
 
     @Test
     public void createCDR(){
-        CDR CDR=new CDR();
+        CDRRepository CDR=new CDRRepository();
         Client client = new Client();
         client.address="asd";
         client.ci = "12345";
         List<String> friends = new ArrayList<>();//friendgetterfromClient through Phone number
         friends.add("60774491");
-
         IPlanClient plan = new PlanClientPostpago(client, "00000000", friends);
         CallRecord record = new CallRecord();
         record.id_callRecord =1;
@@ -26,7 +25,8 @@ public class CDRTest {
         record.callerPhoneNumber = "00000000";
         record.endPointPhoneNumber = "60774491";
         record.startingCallTime = 4;
-        record.calculateCost(plan);
+        RepositoryClientPlan.add(plan);
+        record.calculateCost();
         CDR.addCDR(record);
         assertEquals(true, CDR.FindCDRbyId(1));
     }
@@ -35,7 +35,7 @@ public class CDRTest {
 
     @Test
     public void createCDRList(){
-        CDR CDR=new CDR();
+        CDRRepository CDR=new CDRRepository();
         Client client = new Client();
         client.address="asd";
         client.ci = "12345";
@@ -63,14 +63,11 @@ public class CDRTest {
         record1.callerPhoneNumber = "00000000";
         record1.endPointPhoneNumber = "60774491";
         record1.startingCallTime = 4;
-        record1.calculateCost(plan);
+        RepositoryClientPlan.add(plan);
+        record1.calculateCost();
         CDR.addCDR(record);
         CDR.addCDR(record1);
         CDR.addCDR(record2);
-
-        //assertEquals(true, CDR.FindCDRbyId(1));
-       // assertEquals(true, CDR.FindCDRbyId(2));
-       // assertEquals(true, CDR.FindCDRbyId(3));
        assertEquals(false, CDR.FindCDRbyId(4));
 
 
