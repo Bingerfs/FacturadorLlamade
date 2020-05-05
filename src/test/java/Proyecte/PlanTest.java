@@ -1,30 +1,102 @@
 package Proyecte;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
+import java.util.List;
 
+import java.util.ArrayList;
 public class PlanTest {
 
-    private Plan plan;
 
     @Test
-    public void createPlanPrepago(){
-
-        ArrayList<String> expectedFriends = new ArrayList<>();
-        expectedFriends.add("60774491");
-        plan = new Plan("Prepago");
-        plan.receiveable = "Ninguno";
-        plan.loyaltyYears = 0;
-        plan.friends.add("60774491");
-        assertEquals("Ninguno", plan.receiveable);
-        assertEquals((Integer)0, plan.loyaltyYears);
-        assertEquals(expectedFriends, plan.friends);
-        assertEquals(RateCalculatorPresaldo.class, plan.rateCalculator.getClass());
+    public void calculateNormalSchedulePrepago() {
+        IRateCalculatorBySchedule schedule = new NormalSchedulePrepago();
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60, schedule);
+    	Float result = calculator.calculateRate("");
+    	Float expected = (float) 87.0;
+    	assertEquals(expected, result);
+    	
+    }
+    
+    @Test
+    public void calculateReduceSchedulePrepago() {
+        IRateCalculatorBySchedule schedule = new ReduceSchedulePrepago();
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60, schedule);
+    	Float result = calculator.calculateRate("");
+    	Float expected = (float) 57.0;
+    	assertEquals(expected, result);
+    	
     }
 
+    @Test
+    public void calculateSuperReduceSchedulePrepago() {
+        IRateCalculatorBySchedule schedule = new SuperReduceSchedulePrepago();
+    	IRateCalculator calculator = new RateCalculatorPrepago((float)60, schedule);
+    	Float result = calculator.calculateRate("");
+    	Float expected = (float) 42.0;
+    	assertEquals(expected, result);
+    	
+    }
+    
+    
+
+    @Test
+    public void calculateWow(){
+        Float callLength = (float) 60;
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        friends.add("79789704");
+        friends.add("79789705");
+        IRateCalculator calculador = new RateCalculatorWow(callLength, friends);
+        Float expected = (float) 59.4;
+        Float rate = calculador.calculateRate("75757575");
+        assertEquals(expected, rate);
+    }
+    
+    @Test
+    public void calculateWowFriend(){
+        Float callLength = (float) 60;
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        friends.add("79789704");
+        friends.add("79789705");
+        IRateCalculator calculador = new RateCalculatorWow(callLength, friends);
+        Float expected = (float) 0;
+        Float rate = calculador.calculateRate( "60774491");
+        assertEquals(expected, rate);
+    }
+
+    
+    @Test
+    public void calculatePostpago(){
+        Float callLength = (float) 60;
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        friends.add("79789704");
+        friends.add("79789705");
+        IRateCalculator calculador = new RateCalculatorPostpago(callLength, friends);
+        Float expected = (float) 60;
+        Float rate = calculador.calculateRate("75757575");
+        assertEquals(expected, rate);
+    }
+    
+    @Test
+    public void calculatePostpagoFriend(){
+        Float callLength = (float) 60;
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        friends.add("79789704");
+        friends.add("79789705");
+        IRateCalculator calculador = new RateCalculatorPostpago(callLength, friends);
+        Float expected = (float) 0;
+        Float rate = calculador.calculateRate("60774491");
+        assertEquals(expected, rate);
+    }
     
 
 }

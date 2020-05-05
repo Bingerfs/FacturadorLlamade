@@ -1,23 +1,42 @@
 package Proyecte;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CallRecord {
-    Client callerClient;
-    Client endpointClient;
+    int id_callRecord;
+    String callerPhoneNumber;
+    String endPointPhoneNumber;
     String date;
-    String startingTime;
-    String callLength;
-    Integer callCost;
+    Integer startingCallTime;
+    Float callDuration;
+    Float callCost;
 
-    public CallRecord(Client callerClient, Client endpointClient, String date, String startingTime, String callLength){
-        this.callerClient = callerClient;
-        this.endpointClient = endpointClient;
-        this.date = date;
-        this.startingTime = startingTime;
-        this.callLength = callLength;
-        callCost = calculateCosto();
+    CallRecord(){
+        callCost = (float)0;
+        date="";
+        id_callRecord = 0;
+
     }
 
-    private Integer calculateCosto(){
-        return 0;
+    public void calculateCost() {
+        IPlanClient planClient = RepositoryClientPlan.findByPhoneNumber(callerPhoneNumber);
+        List<Object> planClientData = planClient.getInformationOfClient();
+        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(callDuration, planClient, planClientData,
+                startingCallTime);
+        callCost = calculator.calculateRate(endPointPhoneNumber);
     }
+
+    @Override
+    public String toString() {
+        String record = "callerPhoneNumber: "+callerPhoneNumber+" endPointPhoneNumber= "+ endPointPhoneNumber + " startingCallTime= "+startingCallTime+
+        " callDuration: "+callDuration+" callCost: "+callCost;
+        return record;
+    }
+
+    
+
+	
+
+
 }

@@ -2,12 +2,16 @@ package Proyecte;
 
 public class Client {
     String name;
-    String phoneNumber;
-    Plan plan;
+    String ci;
+    String address;
 
-    public Client(final String name, final String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+
+    public Client() {
     }
 
+    public Client(String name, String ci, String address) {
+        this.name = name;
+        this.ci = ci;
+        this.address = address;
+    }
 }

@@ -1,8 +1,10 @@
 package Proyecte;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IRateCalculator {
 
-    Float calcularTarifa(ArrayList<String> friends);
+    Float calculateRate(String endpointNumber);
+
 }
