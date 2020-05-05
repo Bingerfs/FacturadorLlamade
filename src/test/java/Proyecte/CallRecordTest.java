@@ -66,5 +66,43 @@ public class CallRecordTest {
         Float expected = (float)0;
         assertEquals(expected, record.callCost);
     }
+    @Test
+    public void GetPhoneClientWOW(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        IPlanClient plan = new PlanClientWow(client, "00000000", friends);
+        assertEquals(plan, plan.getByPhoneNumber("00000000"));
+    }
+    @Test
+    public void GetPhoneFalsefClientWOW(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        IPlanClient plan2 = new PlanClientWow(client, "00000065", friends);
+        assertEquals(null, plan2.getByPhoneNumber("00000000"));
+    }
+    @Test
+    public void GetPhoneClientPrepago(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        
+        IPlanClient plan = new PlanClientPrepago(client, "00000000");
+        assertEquals(plan, plan.getByPhoneNumber("00000000"));
+    }
+    @Test
+    public void GetPhoneFalsefClientPrepago(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+      
+        IPlanClient plan2 = new PlanClientPrepago(client, "00000065");
+        assertEquals(null, plan2.getByPhoneNumber("00000000"));
+    }
 
 }
