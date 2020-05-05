@@ -30,5 +30,41 @@ public class CallRecordTest {
         Float expected = (float)0;
         assertEquals(expected, record.callCost);
     }
+    
+    @Test
+    public void createRecordWoW(){
+        Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        IPlanClient plan = new PlanClientWow(client, "00000000", friends);
+        RepositoryClientPlan.add(plan);
+        CallRecord record = new CallRecord();
+        record.callDuration = (float)60;
+        record.callerPhoneNumber = "00000000";
+        record.endPointPhoneNumber = "60774491";
+        record.startingCallTime = 4;
+        record.calculateCost();
+        Float expected = (float)0;
+        assertEquals(expected, record.callCost);
+    }
+    
+    @Test
+    public void createRecordPrepago(){
+        Client client = new Client();
+        client.address="any";
+        client.ci = "1251";
+        IPlanClient plan = new PlanClientPrepago(client, "00000000");
+        RepositoryClientPlan.add(plan);
+        CallRecord record = new CallRecord();
+        record.callDuration = (float)60;
+        record.callerPhoneNumber = "00000000";
+        record.endPointPhoneNumber = "60774491";
+        record.startingCallTime = 4;
+        record.calculateCost();
+        Float expected = (float)0;
+        assertEquals(expected, record.callCost);
+    }
 
 }
