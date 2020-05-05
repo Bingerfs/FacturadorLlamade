@@ -5,15 +5,23 @@ import java.util.List;
 
 public class CDR {
 
+    IPersitOperator persistOperator;
     List<CallRecord>list=new ArrayList<>();
 
-    public CDR() {
+    public CDR(){
+
+    }
+
+    public CDR(IPersitOperator persistOperator) {
+        this.persistOperator = persistOperator;
     }
 
     public void addCDR(CallRecord obj){
+        //persistOperator.add(obj);
         this.list.add(obj);
     }
     public List<CallRecord> getAllCDR(){
+        //persistOperator.getAll();
         return this.list;
     }
     public List<CallRecord> getCDRClient(String callerPhoneNumber){
@@ -28,6 +36,7 @@ public class CDR {
     }
 
     public boolean FindCDRbyId(int id_CallRecord){
+        //persistOperator.getById();
         System.out.println("this id is ");
 
         boolean res=false;
