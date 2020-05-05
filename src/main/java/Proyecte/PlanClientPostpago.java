@@ -14,6 +14,8 @@ public class PlanClientPostpago implements IPlanClient {
         this.client = client;
         this.phoneNumber = phoneNumber;
         this.friends = friends;
+        this.balance = "0";
+        this.receivables = "0";
     }
 
     @Override

@@ -58,9 +58,11 @@ public class CallRecordTest {
         friends.add("60774491");
         IPlanClient plan = new PlanClientWow(client, "00000000", friends);
         List<Object> clientPLanData = new ArrayList<>();
-        clientPLanData.add(client);
-        clientPLanData.add("00000000");
-        clientPLanData.add(friends);
+        clientPLanData.add(client);//clientData
+        clientPLanData.add("00000000");//phoneNumber
+        clientPLanData.add("0");//balance
+        clientPLanData.add("0");//receivables
+        clientPLanData.add(friends);//friendsList
         assertEquals(clientPLanData, plan.getInformationOfClient());
     }
     @Test
@@ -72,8 +74,10 @@ public class CallRecordTest {
         friends.add("60774491");
         IPlanClient plan = new PlanClientPrepago(client, "00000000");
         List<Object> clientPLanData = new ArrayList<>();
-        clientPLanData.add(client);
-        clientPLanData.add("00000000");
+        clientPLanData.add(client);//clientData
+        clientPLanData.add("00000000");//phoneNumber
+        clientPLanData.add("0");//balance
+        clientPLanData.add("0");//retrievables
         assertEquals(clientPLanData, plan.getInformationOfClient());
     }
     @Test

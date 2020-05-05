@@ -3,16 +3,16 @@ package Proyecte;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CDR {
+public class CDRRepository {
 
-    IPersitOperator persistOperator;
+    IPersitOperator persistOperator;//Las clases que implementen diferentes tecnologias tendrian que implementar esta abstraccion
     List<CallRecord>list=new ArrayList<>();
 
-    public CDR(){
+    public CDRRepository(){
 
     }
 
-    public CDR(IPersitOperator persistOperator) {
+    public CDRRepository(IPersitOperator persistOperator) {
         this.persistOperator = persistOperator;
     }
 

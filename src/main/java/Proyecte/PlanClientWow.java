@@ -14,6 +14,8 @@ public PlanClientWow(Client client, String phoneNumber, List<String> friends) {
     this.client = client;
     this.phoneNumber = phoneNumber;
     this.friends = friends;
+    this.balance = "0";
+    this.receivables = "0";
 }
 
 @Override
@@ -21,6 +23,8 @@ public List<Object> getInformationOfClient() {
     List<Object> clientPLanData = new ArrayList<>();
     clientPLanData.add(client);
     clientPLanData.add(phoneNumber);
+    clientPLanData.add(balance);
+    clientPLanData.add(receivables);
     clientPLanData.add(friends);
     return clientPLanData;
 }

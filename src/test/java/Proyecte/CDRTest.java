@@ -12,7 +12,7 @@ public class CDRTest {
 
     @Test
     public void createCDR(){
-        CDR CDR=new CDR();
+        CDRRepository CDR=new CDRRepository();
         Client client = new Client();
         client.address="asd";
         client.ci = "12345";
@@ -35,7 +35,7 @@ public class CDRTest {
 
     @Test
     public void createCDRList(){
-        CDR CDR=new CDR();
+        CDRRepository CDR=new CDRRepository();
         Client client = new Client();
         client.address="asd";
         client.ci = "12345";
