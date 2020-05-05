@@ -139,5 +139,39 @@ public class CallRecordTest {
         IPlanClient plan2 = new PlanClientPrepago(client, "00000065");
         assertEquals(null, plan2.getByPhoneNumber("00000000"));
     }
+    
+    //////////////////////////
+    @Test
+    public void createClientWithParams(){
+        Client client = new Client();
+        client.name="pepe";
+        client.address="asd";
+        client.ci = "12345";
+        Client client2 = new Client(client.name,client.ci,client.address);
+        assertEquals(client.ci, client2.ci);
+    }
+    
+    
+    @Test
+    public void CallrecordToString(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        IPlanClient plan = new PlanClientPostpago(client, "00000000", friends);
+        RepositoryClientPlan.add(plan);
+        CallRecord record = new CallRecord();
+        record.callDuration = (float)60;
+        record.callerPhoneNumber = "00000000";
+        record.endPointPhoneNumber = "60774491";
+        record.startingCallTime = 4;
+        record.calculateCost();
+        String record3 = "callerPhoneNumber: "+"00000000"+" endPointPhoneNumber= "+ "60774491" + " startingCallTime= "+"4"+
+                " callDuration: "+"60.0"+" callCost: "+"0.0";
+        assertEquals(record3, record.toString());
+
+    }
+   
 
 }

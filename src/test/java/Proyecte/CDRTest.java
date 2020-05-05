@@ -18,7 +18,6 @@ public class CDRTest {
         client.ci = "12345";
         List<String> friends = new ArrayList<>();//friendgetterfromClient through Phone number
         friends.add("60774491");
-
         IPlanClient plan = new PlanClientPostpago(client, "00000000", friends);
         CallRecord record = new CallRecord();
         record.id_callRecord =1;
@@ -69,10 +68,6 @@ public class CDRTest {
         CDR.addCDR(record);
         CDR.addCDR(record1);
         CDR.addCDR(record2);
-
-        //assertEquals(true, CDR.FindCDRbyId(1));
-       // assertEquals(true, CDR.FindCDRbyId(2));
-       // assertEquals(true, CDR.FindCDRbyId(3));
        assertEquals(false, CDR.FindCDRbyId(4));
 
 

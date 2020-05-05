@@ -17,11 +17,9 @@ public class CDR {
     }
 
     public void addCDR(CallRecord obj){
-        //persistOperator.add(obj);
         this.list.add(obj);
     }
     public List<CallRecord> getAllCDR(){
-        //persistOperator.getAll();
         return this.list;
     }
     public List<CallRecord> getCDRClient(String callerPhoneNumber){
@@ -36,7 +34,6 @@ public class CDR {
     }
 
     public boolean FindCDRbyId(int id_CallRecord){
-        //persistOperator.getById();
         System.out.println("this id is ");
 
         boolean res=false;
