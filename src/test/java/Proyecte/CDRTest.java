@@ -27,7 +27,7 @@ public class CDRTest {
         record.endPointPhoneNumber = "60774491";
         record.startingCallTime = 4;
         RepositoryClientPlan.add(plan);
-        record.calculateCost(plan);
+        record.calculateCost();
         CDR.addCDR(record);
         assertEquals(true, CDR.FindCDRbyId(1));
     }
@@ -65,7 +65,7 @@ public class CDRTest {
         record1.endPointPhoneNumber = "60774491";
         record1.startingCallTime = 4;
         RepositoryClientPlan.add(plan);
-        record1.calculateCost(plan);
+        record1.calculateCost();
         CDR.addCDR(record);
         CDR.addCDR(record1);
         CDR.addCDR(record2);

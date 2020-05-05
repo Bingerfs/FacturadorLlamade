@@ -10,6 +10,13 @@ public class PlanClientPrepago implements IPlanClient{
     String balance;
     String receivables;
 
+    PlanClientPrepago (Client client, String phoneNumber){
+        this.client = client;
+        this.phoneNumber = phoneNumber;
+        this.balance = "0";
+        this.receivables = "0";
+    }
+
 	@Override
 	public List<Object> getInformationOfClient() {
 		List<Object> clientPLanData = new ArrayList<>();

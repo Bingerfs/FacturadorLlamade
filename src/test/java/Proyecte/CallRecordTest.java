@@ -26,7 +26,7 @@ public class CallRecordTest {
         record.callerPhoneNumber = "00000000";
         record.endPointPhoneNumber = "60774491";
         record.startingCallTime = 4;
-        record.calculateCost(plan);
+        record.calculateCost();
         Float expected = (float)0;
         assertEquals(expected, record.callCost);
     }

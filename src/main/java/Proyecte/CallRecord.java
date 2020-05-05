@@ -12,13 +12,26 @@ public class CallRecord {
     Float callDuration;
     Float callCost;
 
-    public void calculateCost(IPlanClient plan){
+    CallRecord(){
+        callCost = (float)0;
+        date="";
+        id_callRecord = 0;
+
+    }
+
+    public void calculateCost() {
         IPlanClient planClient = RepositoryClientPlan.findByPhoneNumber(callerPhoneNumber);
-        System.out.println("idek");
         List<Object> planClientData = planClient.getInformationOfClient();
-        System.out.println(planClientData);
-        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(callDuration, planClient, planClientData, startingCallTime); 
+        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(callDuration, planClient, planClientData,
+                startingCallTime);
         callCost = calculator.calculateRate(endPointPhoneNumber);
+    }
+
+    @Override
+    public String toString() {
+        String record = "callerPhoneNumber: "+callerPhoneNumber+" endPointPhoneNumber= "+ endPointPhoneNumber + " startingCallTime= "+startingCallTime+
+        " callDuration: "+callDuration+" callCost: "+callCost;
+        return record;
     }
 
     
