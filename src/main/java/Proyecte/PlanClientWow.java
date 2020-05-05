@@ -21,8 +21,6 @@ public List<Object> getInformationOfClient() {
     List<Object> clientPLanData = new ArrayList<>();
     clientPLanData.add(client);
     clientPLanData.add(phoneNumber);
-    clientPLanData.add(balance);
-    clientPLanData.add(receivables);
     clientPLanData.add(friends);
     return clientPLanData;
 }

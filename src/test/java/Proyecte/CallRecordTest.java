@@ -49,7 +49,33 @@ public class CallRecordTest {
         Float expected = (float)0;
         assertEquals(expected, record.callCost);
     }
-    
+    @Test
+    public void getInfoClientWoW(){
+        Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        IPlanClient plan = new PlanClientWow(client, "00000000", friends);
+        List<Object> clientPLanData = new ArrayList<>();
+        clientPLanData.add(client);
+        clientPLanData.add("00000000");
+        clientPLanData.add(friends);
+        assertEquals(clientPLanData, plan.getInformationOfClient());
+    }
+    @Test
+    public void getInfoClientPrepago(){
+        Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+        friends.add("60774491");
+        IPlanClient plan = new PlanClientPrepago(client, "00000000");
+        List<Object> clientPLanData = new ArrayList<>();
+        clientPLanData.add(client);
+        clientPLanData.add("00000000");
+        assertEquals(clientPLanData, plan.getInformationOfClient());
+    }
     @Test
     public void createRecordPrepago(){
         Client client = new Client();

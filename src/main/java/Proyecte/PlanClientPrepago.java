@@ -22,8 +22,6 @@ public class PlanClientPrepago implements IPlanClient{
 		List<Object> clientPLanData = new ArrayList<>();
         clientPLanData.add(client);
         clientPLanData.add(phoneNumber);
-        clientPLanData.add(balance);
-        clientPLanData.add(receivables);
 		return clientPLanData;
     }
     
