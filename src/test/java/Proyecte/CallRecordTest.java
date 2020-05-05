@@ -113,6 +113,16 @@ public class CallRecordTest {
         assertEquals(null, plan2.getByPhoneNumber("00000000"));
     }
     @Test
+    public void GetFalsePhoneClientPrepago(){
+    	Client client = new Client();
+        client.address="asd";
+        client.ci = "12345";
+        List<String> friends = new ArrayList<>();
+
+        IPlanClient plan2 = new PlanClientPostpago(client, "00000065", friends);
+        assertEquals(null, plan2.getByPhoneNumber("00000080"));
+    }
+    @Test
     public void GetPhoneClientPrepago(){
     	Client client = new Client();
         client.address="asd";
