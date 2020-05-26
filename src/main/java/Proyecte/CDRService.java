@@ -3,21 +3,22 @@ package Proyecte;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CDRRepository {
+public class CDRService {
 
-    IPersitOperator persistOperator;//Las clases que implementen diferentes tecnologias tendrian que implementar esta abstraccion
-    List<CallRecord>list=new ArrayList<>();
+    ICDRRepository cdrRepository;//Las clases que implementen diferentes tecnologias tendrian que implementar esta abstraccion
+    //List<CallRecord>list=new ArrayList<>();
 
-    public CDRRepository(){
+    public CDRService(){
 
     }
 
-    public CDRRepository(IPersitOperator persistOperator) {
-        this.persistOperator = persistOperator;
+    public CDRService(ICDRRepository persistOperator) {
+        this.cdrRepository = persistOperator;
     }
 
-    public void addCDR(CallRecord obj){
-        this.list.add(obj);
+    public void addCDR(CallRecord callRecord){
+        //this.list.add(callRecord);
+        cdrRepository.addCallRecord(callRecord);
     }
     public List<CallRecord> getAllCDR(){
         return this.list;

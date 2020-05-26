@@ -11,6 +11,7 @@ public class CallRecord {
     Integer startingCallTime;
     Float callDuration;
     Float callCost;
+    
 
     CallRecord(){
         callCost = (float)0;
@@ -32,6 +33,17 @@ public class CallRecord {
         String record = "callerPhoneNumber: "+callerPhoneNumber+" endPointPhoneNumber= "+ endPointPhoneNumber + " startingCallTime= "+startingCallTime+
         " callDuration: "+callDuration+" callCost: "+callCost;
         return record;
+    }
+
+    public CallRecord(int id_callRecord, String callerPhoneNumber, String endPointPhoneNumber, String date,
+            Integer startingCallTime, Float callDuration, Float callCost) {
+        this.id_callRecord = id_callRecord;
+        this.callerPhoneNumber = callerPhoneNumber;
+        this.endPointPhoneNumber = endPointPhoneNumber;
+        this.date = date;
+        this.startingCallTime = startingCallTime;
+        this.callDuration = callDuration;
+        this.callCost = callCost;
     }
 
     
