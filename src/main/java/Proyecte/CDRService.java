@@ -6,7 +6,7 @@ import java.util.List;
 public class CDRService {
 
     ICDRRepository cdrRepository;//Las clases que implementen diferentes tecnologias tendrian que implementar esta abstraccion
-    //List<CallRecord>list=new ArrayList<>();
+    List<CallRecord>list=new ArrayList<>();
 
     public CDRService(){
 

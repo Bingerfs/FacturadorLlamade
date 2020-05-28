@@ -12,6 +12,13 @@ public class App
 
 
     public static void main(String[] args) {
+        List<String> list =new ArrayList<>();
+        list.add("ana");
+        list.add("pepe");
+        list.add("julia");
+        list.add("dani");
+        UIService uiservice=new SparkUI();
+        uiservice.showCallRecords(list,"nuevo valor");
         List<CallRecord> callRecords = new ArrayList<>();
         callRecords = initializeCallRecords();
         System.out.println("--------------Sin costo---------------");
