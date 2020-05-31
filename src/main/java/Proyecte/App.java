@@ -13,6 +13,7 @@ public class App
 
     public static ICDRRepository icdrRepository=new CDRPrueba();
     public static List<CallRecord> callRecordList=new ArrayList<>();
+    public static  UIController uiController=new UIController();
 
     public static void main(String[] args) {
         CallRecord callRecord = new CallRecord();
@@ -55,8 +56,8 @@ public class App
         before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
 
-        get(Path.Web.CALLRECORDS,    UIController.fetchAllBooks);
-        get(Path.Web.INDEX,    UIController.index);
+       // get(Path.Web.CALLRECORDS,    uiController.fetchAllBooks);
+        get(Path.Web.INDEX,    uiController.index);
 
         //get("*",                     ViewUtil.notFound);
 
@@ -68,7 +69,7 @@ public class App
         list.add("pepe");
         list.add("julia");
         list.add("dani");
-        UIBoundary uiservice=new SparkUI();
+        UIBoundaryOut uiservice=new UIPresenter();
         uiservice.showCallRecords(list,"nuevo valor");
 
 

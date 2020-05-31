@@ -2,7 +2,7 @@ package Proyecte;
 import com.fasterxml.jackson.databind.*;
 import java.io.*;
 public class JsonUtil {
-    public static String dataToJson(Object data) {
+    public  String dataToJson(Object data) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
