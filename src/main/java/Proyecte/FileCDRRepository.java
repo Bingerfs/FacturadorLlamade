@@ -25,7 +25,8 @@ public class FileCDRRepository implements ICDRRepository {
     @Override
     public List<CallRecord> getAllCallRecords() throws Exception {
         List<CallRecord> callRecords = new ArrayList<>();
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fileName));
 		String str = "";
 		str = in.readLine(); // skip header
 		while ((str = in.readLine()) != null) {
@@ -33,7 +34,10 @@ public class FileCDRRepository implements ICDRRepository {
 			CallRecord callRecord = new CallRecord( Integer.parseInt(callRecordData[0]), callRecordData[1], callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]), Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
 			callRecords.add(callRecord);
         }
-        in.close();
+        in.close();   
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
         return callRecords;
     }
 

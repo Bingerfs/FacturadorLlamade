@@ -16,6 +16,7 @@ public class App
     public static  UIController uiController=new UIController();
 
     public static void main(String[] args) {
+
         CallRecord callRecord = new CallRecord();
         CallRecord callRecord2 = new CallRecord();
         CallRecord callRecord3 = new CallRecord();
@@ -73,6 +74,13 @@ public class App
         uiservice.showCallRecords(list,"nuevo valor");
 
 
+        ClientRepository clientRepository = new FileClientRepository("clientangos.txt");
+        Client cliente = new Client("Carlos", "34", "uhh");
+        clientRepository.createClient(cliente);
+        List<Client> clients = clientRepository.getAllClients();
+        for(Client client : clients){
+            System.out.println(client.name + client.address + client.ci);
+        }
     }
 
     public static void printRecords(List<CallRecord> callRecords){
