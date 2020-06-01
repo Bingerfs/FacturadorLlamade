@@ -12,15 +12,13 @@ public class App
 
 
     public static void main(String[] args) {
-        List<CallRecord> callRecords = new ArrayList<>();
-        callRecords = initializeCallRecords();
-        System.out.println("--------------Sin costo---------------");
-        initializeClientPlanData();
-        printRecords(callRecords);
-        calculateRates(callRecords);
-        System.out.println("--------------Con costo---------------");
-        printRecords(callRecords);
-
+        ClientRepository clientRepository = new FileClientRepository("clientangos.txt");
+        Client cliente = new Client("Carlos", "34", "uhh");
+        clientRepository.createClient(cliente);
+        List<Client> clients = clientRepository.getAllClients();
+        for(Client client : clients){
+            System.out.println(client.name + client.address + client.ci);
+        }
     }
 
     public static void printRecords(List<CallRecord> callRecords){
