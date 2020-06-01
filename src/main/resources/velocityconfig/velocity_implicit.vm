@@ -1,0 +1,6 @@
+#* @implicitly included *#
+#* @vtlvariable name="WebPath" type="Proyecte.Path.Web" *#
+#* @vtlvariable name="msg" type="Proyecte.MessageBundle" *#
+#* @vtlvariable name="callrecordslist" type="java.lang.Iterable<Proyecte.CallRecord>" *#
+    #* @vtlvariable name="callrecord" type="Proyecte.CallRecord" *#
+        #* @vtlvariable name="currentUser" type="java.lang.String" *#

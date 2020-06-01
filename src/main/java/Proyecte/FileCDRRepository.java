@@ -1,6 +1,7 @@
 package Proyecte;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -22,7 +23,7 @@ public class FileCDRRepository implements ICDRRepository {
     }
 
     @Override
-    public List<CallRecord> getAllCallRecords() {
+    public List<CallRecord> getAllCallRecords() throws Exception {
         List<CallRecord> callRecords = new ArrayList<>();
         try {
             BufferedReader in = new BufferedReader(new FileReader(fileName));
