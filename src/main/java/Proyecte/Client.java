@@ -1,9 +1,9 @@
 package Proyecte;
 
 public class Client {
-    String name;
-    String ci;
-    String address;
+    public String name;
+    public String ci;
+    public String address;
 
 
     public Client() {
@@ -14,5 +14,13 @@ public class Client {
         this.name = name;
         this.ci = ci;
         this.address = address;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getCi(){
+        return ci;
     }
 }

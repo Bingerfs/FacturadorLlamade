@@ -17,7 +17,7 @@ public class FileClientRepository implements ClientRepository {
     }
 
     @Override
-    public void createClient(Client client) {
+    public void createClient(ClientDto client) {
         try {
             
             //clientFile.createNewFile();

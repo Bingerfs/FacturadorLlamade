@@ -14,10 +14,11 @@ public class App
     public static ICDRRepository icdrRepository=new CDRPrueba();
     public static List<CallRecord> callRecordList=new ArrayList<>();
     public static  UIController uiController=new UIController();
+    public static ClientController clientController = new ClientController(new ClientService(new FileClientRepository("clientangos.txt"), new ClientPresenter()));
 
     public static void main(String[] args) {
 
-        CallRecord callRecord = new CallRecord();
+        /*CallRecord callRecord = new CallRecord();
         CallRecord callRecord2 = new CallRecord();
         CallRecord callRecord3 = new CallRecord();
         callRecord.callerPhoneNumber = "00000000";
@@ -46,7 +47,7 @@ public class App
         printRecords(callRecords);
         calculateRates(callRecords);
         System.out.println("--------------Con costo---------------");
-        printRecords(callRecords);
+        printRecords(callRecords);*/
 
 
         port(4567);
@@ -59,13 +60,14 @@ public class App
 
        // get(Path.Web.CALLRECORDS,    uiController.fetchAllBooks);
         get(Path.Web.INDEX,    uiController.index);
+        get(Path.Web.CLIENTS_ALL,   clientController.getAllClients);
 
         //get("*",                     ViewUtil.notFound);
 
         after("*",                   Filters.addGzipHeader);
 
 
-        List<String> list =new ArrayList<>();
+        /*List<String> list =new ArrayList<>();
         list.add("ana");
         list.add("pepe");
         list.add("julia");
@@ -80,7 +82,7 @@ public class App
         List<Client> clients = clientRepository.getAllClients();
         for(Client client : clients){
             System.out.println(client.name + client.address + client.ci);
-        }
+        }*/
     }
 
     public static void printRecords(List<CallRecord> callRecords){

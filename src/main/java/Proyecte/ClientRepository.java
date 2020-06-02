@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ClientRepository {
     List<Client> getAllClients();
-    void createClient(Client client);
+    void createClient(ClientDto client);
     
 }
