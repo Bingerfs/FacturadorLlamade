@@ -14,7 +14,7 @@ public class App
     public static ICDRRepository icdrRepository=new CDRPrueba();
     public static List<CallRecord> callRecordList=new ArrayList<>();
     public static  UIController uiController=new UIController();
-    public static ClientController clientController = new ClientController(new ClientService(new FileClientRepository("clientangos.txt"), new ClientPresenter()));
+    public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
 
     public static void main(String[] args) {
 
@@ -83,6 +83,8 @@ public class App
         for(Client client : clients){
             System.out.println(client.name + client.address + client.ci);
         }*/
+
+
     }
 
     public static void printRecords(List<CallRecord> callRecords){
