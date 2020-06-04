@@ -19,7 +19,7 @@ public class App
     public static void main(String[] args) {
 
 
-        /*port(4567);
+        port(4567);
         staticFiles.location("/public");
         staticFiles.expireTime(600L);
         enableDebugScreen();
@@ -33,9 +33,9 @@ public class App
 
         //get("*",                     ViewUtil.notFound);
 
-        after("*",                   Filters.addGzipHeader);*/
+        after("*",                   Filters.addGzipHeader);
 
-        IClientRepository repository = new SqlClientRepository();
+        /*IClientRepository repository = new SqlClientRepository();
         Client client = repository.getClientByCi("5656");
         System.out.println(client.name);
         IAccountRepository repositorya = new SqlAccountRepository();
@@ -44,7 +44,7 @@ public class App
         friends.add("79789704");
         receivables.add(new FriendsReceivable(friends));
         Account account = new Account(client, "60774491", receivables, "Prepago");
-        repositorya.createAccount(account);
+        repositorya.createAccount(account);*/
 
     }
 }
