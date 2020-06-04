@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface IRateCalculator {
 
-    Float calculateRate(String endpointNumber);
+    Float calculateRate();
 
 }

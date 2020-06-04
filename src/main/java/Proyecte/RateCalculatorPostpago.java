@@ -10,18 +10,23 @@ public class RateCalculatorPostpago implements IRateCalculator {
 
     Float ratePerMinute = (float) 1;
     Float callDuration;
-    List<String> friends;
+    String endpointNumber;
+    List<Receivable> receivables;
 
-    RateCalculatorPostpago(Float callDuration, List<String> friends){
+    RateCalculatorPostpago(Float callDuration, List<Receivable> receivables, String endpointNumber){
         this.callDuration = callDuration;
-        this.friends = friends;
+        this.receivables = receivables;
+        this.endpointNumber = endpointNumber;
     }
 
     @Override
-    public Float calculateRate(String endpointNumber) {
+    public Float calculateRate() {
         Float totalRate = (float) 0;
-        if(!friends.contains(endpointNumber))
-            totalRate = callDuration * ratePerMinute; 
+        totalRate = callDuration * ratePerMinute; 
+        if(receivables != null){
+            for(Receivable receivable : receivables)
+                receivable.applyReceivable(totalRate, endpointNumber);
+        }
         return totalRate;
     }
     

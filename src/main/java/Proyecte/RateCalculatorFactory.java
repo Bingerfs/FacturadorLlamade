@@ -4,21 +4,17 @@ import java.util.List;
 
 public class RateCalculatorFactory {
 	
-	public static IRateCalculator getRateCalculator(Float callDuration, IPlanClient plan, List<Object> clientPlanData,Integer startingCallTime){
+	public static IRateCalculator getRateCalculator(CallRecord callRecord, Account account){
 		
 		IRateCalculator calculator = null;
-		if(plan instanceof PlanClientPrepago){
-			calculator = new RateCalculatorPrepago(callDuration, PlanScheduleFactory.getPlanSchedule(startingCallTime));
-			return calculator;
-		}
-		@SuppressWarnings("unchecked")
-		List<String> friends = (List<String>) clientPlanData.get(4);
+		if(account.accoundType == "Prepago")
+			calculator = new RateCalculatorPrepago(callRecord.callDuration, PlanScheduleFactory.getPlanSchedule(callRecord.startingCallTime), account.receivables);
 		
-	    if(plan instanceof PlanClientPostpago)
-	        calculator = new RateCalculatorPostpago(callDuration, friends);
+	    if(account.accoundType == "Postpago")
+	        calculator = new RateCalculatorPostpago(callRecord.callDuration, account.receivables, callRecord.endPointPhoneNumber);
 	    
-	    if(plan instanceof PlanClientWow)
-	        calculator = new RateCalculatorWow(callDuration, friends);
+	    if(account.accoundType == "Wow")
+	        calculator = new RateCalculatorWow(callRecord.callDuration, account.receivables, callRecord.endPointPhoneNumber);
 	    
 	    return calculator;
 	}

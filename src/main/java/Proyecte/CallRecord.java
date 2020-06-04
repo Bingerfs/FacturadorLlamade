@@ -1,6 +1,7 @@
 package Proyecte;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CallRecord {
@@ -21,11 +22,10 @@ public class CallRecord {
     }
 
     public void calculateCost() {
-        IPlanClient planClient = RepositoryClientPlan.findByPhoneNumber(callerPhoneNumber);
-        List<Object> planClientData = planClient.getInformationOfClient();
-        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(callDuration, planClient, planClientData,
-                startingCallTime);
-        callCost = calculator.calculateRate(endPointPhoneNumber);
+        IAccountRepository accountRepository = new SqlAccountRepository();
+        Account account = accountRepository.getAccountByPhoneNumber(callerPhoneNumber);
+        IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(this, account);
+        callCost = calculator.calculateRate();
     }
 
     @Override

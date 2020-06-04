@@ -8,26 +8,26 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileClientRepository implements ClientRepository {
+public class FileClientRepository implements IClientRepository {
 
     private String fileName;
 
-    FileClientRepository(String fileName){
+    FileClientRepository(String fileName) {
         this.fileName = fileName;
     }
 
     @Override
     public void createClient(ClientDto client) {
         try {
-            
-            //clientFile.createNewFile();
+
+            // clientFile.createNewFile();
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
-        String line =client.name + ", "+client.ci+", "+client.address; 
-        out.write(line);
-        out.newLine();
-        out.close();   
+            String line = client.name + ", " + client.ci + ", " + client.address;
+            out.write(line);
+            out.newLine();
+            out.close();
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
         }
 
     }
@@ -36,18 +36,25 @@ public class FileClientRepository implements ClientRepository {
     public List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
         try {
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
-		String str = "";
-		while ((str = in.readLine()) != null) {
-			String[] clientData = str.split(", ");
-			Client client = new Client(clientData[0], clientData[1], clientData[2]);
-			clients.add(client);
-        }
-        in.close();  
+            BufferedReader in = new BufferedReader(new FileReader(fileName));
+            String str = "";
+            while ((str = in.readLine()) != null) {
+                String[] clientData = str.split(", ");
+                Client client = new Client(clientData[0], clientData[1], clientData[2]);
+                clients.add(client);
+            }
+            in.close();
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
         }
-        return clients; 
+        return clients;
     }
+
+    @Override
+    public Client getClientByCi(String ci) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
     
 }

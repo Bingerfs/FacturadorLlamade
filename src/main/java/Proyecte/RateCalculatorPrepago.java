@@ -11,33 +11,31 @@ public class RateCalculatorPrepago implements IRateCalculator{
     private float totalRate;
     private float duration;
     private IRateCalculatorBySchedule schedule;
-    //private List<SpecialReceivables> receivables; Lista de diferentes abonos, minutos gratis
-    //y descuentos por amigos
+    private List<Receivable> receivables;
 
-
-    public RateCalculatorPrepago( float duration, IRateCalculatorBySchedule schedule) {
+    public RateCalculatorPrepago( float duration, IRateCalculatorBySchedule schedule, List<Receivable> receivables) {
       
         this.ratePerMinute = (float)0;
         this.duration = duration;
         this.totalRate = 0;
         this.schedule = schedule;
+        this.receivables = receivables;
     }
 
     @Override
-    public Float calculateRate(String endpointNumber) {
+    public Float calculateRate() {
         totalRate = (float)0;
 		IRateCalculatorBySchedule iRateCalculatorBySchedule = schedule;
         ratePerMinute = iRateCalculatorBySchedule.getRatePerMinute();
         totalRate = duration*ratePerMinute;
-        //applySpecialReceivables(totalRate); Si es que tiene alguno
+        if(receivables !=null){
+            for(Receivable receivable : receivables)
+                receivable.applyReceivable(totalRate, null);
+        } 
         return totalRate;
     }
     
-    //@Override
-    //public Float applySpecialReceivables(Rate){
-        //for(......)
-            //receivables.apply(Rate);
-    //}
+
 	
 	
 	

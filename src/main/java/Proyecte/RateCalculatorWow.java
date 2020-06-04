@@ -6,20 +6,25 @@ import java.util.ArrayList;
 public class RateCalculatorWow implements IRateCalculator{
     Float ratePerMinute = (float) 0.99;
     Float duration;
-    List<String> friends;
+    String endpointNumber;
+    List<Receivable> receivables;
 
-    public RateCalculatorWow(Float duration, List<String> friends){
+    public RateCalculatorWow(Float duration, List<Receivable> receivables, String endpointNumber){
         this.duration = duration;
-        this.friends = friends;
+        this.receivables = receivables;
+        this.endpointNumber = endpointNumber;
     }
 
     
     @Override
-	public Float calculateRate(String endpointNumber) {
+	public Float calculateRate() {
      
     	Float totalRate = (float) 0;
-        if(!friends.contains(endpointNumber))
-            totalRate = duration * ratePerMinute; 
+        totalRate = duration * ratePerMinute;
+        if(receivables !=null){
+            for(Receivable receivable : receivables)
+                receivable.applyReceivable(totalRate, endpointNumber);
+        } 
         return totalRate;
     }
 

@@ -11,20 +11,20 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
-public class SqlClientRepository implements ClientRepository {
+public class SqlClientRepository implements IClientRepository {
 
-    private  SessionFactory factory;
-    private  ServiceRegistry serviceRegistry;
+    private SessionFactory factory;
+    private ServiceRegistry serviceRegistry;
     private Configuration config;
 
-    SqlClientRepository(){
+    SqlClientRepository() {
         config = new Configuration();
         config.configure();
         config.addAnnotatedClass(Client.class);
         config.addResource("Client.hbm.xml");
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(serviceRegistry);
-         
+
     }
 
     @Override
@@ -35,10 +35,10 @@ public class SqlClientRepository implements ClientRepository {
         try {
             tx = session.beginTransaction();
             Client clientO = clientMapper.transformClient(client);
-            session.save(clientO);            
+            session.save(clientO);
             tx.commit();
-        } catch(HibernateException ex) {
-            if(tx != null)
+        } catch (HibernateException ex) {
+            if (tx != null)
                 tx.rollback();
             ex.printStackTrace();
         } finally {
@@ -50,11 +50,21 @@ public class SqlClientRepository implements ClientRepository {
     @Override
     public List<Client> getAllClients() {
         Session session = factory.openSession();
-        Query q = session.createQuery("From Client");
-        List<Client> clients = q.list();
+        List<Client> clients = session.createQuery("From Client").list();
         session.close();
         return clients;
     }
+
+    @Override
+    public Client getClientByCi(String ci) {
+        Session session = factory.openSession();
+        Query q = session.createQuery("From Client where client_id="+ci);
+        Client client= (Client)q.uniqueResult();
+        session.close();
+        return client;
+    }
+
+    
     
     
 }

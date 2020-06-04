@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="Proyecte.Account" table="ACCOUNT">
+        <id name="phoneNumber" type="java.lang.String">
+            <column name="phoneNumber" />
+        </id>
+        <property name="balance" type="java.lang.String">
+            <column name="balance" />
+        </property>
+        <property name="accountType" type="java.lang.String">
+            <column name="accountType" />
+        </property>
+        <list name = "receivables" cascade="all">
+            <key column = "client_id"/>
+            <list-index column = "idx"/>
+            <one-to-many class="string"/>
+         </list>
+        <one-to-one name="client" class="Proyecte.Client"/>
+    </class>
+</hibernate-mapping>

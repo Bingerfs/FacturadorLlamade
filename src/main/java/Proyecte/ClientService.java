@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ClientService implements ClientBoundaryIn {
-    private ClientRepository clientRepository;
+    private IClientRepository clientRepository;
     private ClientBoundaryOut clientBoundaryOut;
 
-    ClientService(ClientRepository clientRepository, ClientBoundaryOut clientBoundaryOut){
+    ClientService(IClientRepository clientRepository, ClientBoundaryOut clientBoundaryOut){
         this.clientRepository = clientRepository;
         this.clientBoundaryOut = clientBoundaryOut;
     }
@@ -21,6 +21,11 @@ public class ClientService implements ClientBoundaryIn {
     public HashMap<String, Object> getAllClients() {
         List<Client> clients =clientRepository.getAllClients();
         return clientBoundaryOut.showAllClients(clients);
+    }
+
+    @Override
+    public Client findClientByCi(String ci){
+        return clientRepository.getClientByCi(ci);
     }
     
     
