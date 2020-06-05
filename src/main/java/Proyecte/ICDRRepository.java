@@ -1,11 +1,13 @@
 package Proyecte;
 
+import Proyecte.callRecord.CallRecordDto;
+
 import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface ICDRRepository {
-    void addCallRecord(CallRecord callRecord);
-    List<CallRecord> getAllCallRecords() throws FileNotFoundException, Exception;
-    CallRecord getCallRecordById();
+    void addCallRecord(CallRecordDto callRecord);
+    List<CallRecord> getAllCallRecords();
+    CallRecord getCallRecordById(int id);
 
 }

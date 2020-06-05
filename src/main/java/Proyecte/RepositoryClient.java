@@ -1,5 +1,7 @@
 package Proyecte;
 
+import Proyecte.client.Client;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,34 +1,12 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<div>
+<div class="row row-3">
     ESTO ES INDEX
-    <table style="width:100%" background-color="red">
-        <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Age</th>
-        </tr>
-        <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
-        </tr>
-        <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-        </tr>
-    </table>
-    <div class="row row-3">
-       <!-- #foreach($callrecord in $callrecordslist)
-        <div class="col">
-            <h1>es </h1>
-            <a class="book" href="$WebPath.getBOOKS()$book.getIsbn()">
-
-                $msg.get("BOOKS_CAPTION", $book.getcallerPhoneNumber(), $book.getcallDuration())
-            </a>
-        </div>
-        #end-->
+    <div>
+        <input type="file"
+               id="avatar" name="avatar"
+               accept=".txt">
     </div>
+
 </div>
 #end

@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="Proyecte.Client" table="CLIENT">
+    <class name="Proyecte.client.Client" table="CLIENT">
         <id name="ci" type="java.lang.String">
             <column name="client_id" />
         </id>

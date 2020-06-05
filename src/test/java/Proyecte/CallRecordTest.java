@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CallRecordTest {
-
+/*
     @Test
     public void createRecordPostpago(){
         Client client = new Client();
@@ -30,7 +30,7 @@ public class CallRecordTest {
         Float expected = (float)0;
         assertEquals(expected, record.callCost);
     }
-    
+
     @Test
     public void createRecordWoW(){
         Client client = new Client();
@@ -131,7 +131,7 @@ public class CallRecordTest {
     	Client client = new Client();
         client.address="asd";
         client.ci = "12345";
-        
+
         IPlanClient plan = new PlanClientPrepago(client, "00000000");
         assertEquals(plan, plan.getByPhoneNumber("00000000"));
     }
@@ -140,7 +140,7 @@ public class CallRecordTest {
     	Client client = new Client();
         client.address="asd";
         client.ci = "12345";
-        
+
         IPlanClient plan = new PlanClientPrepago(client, "00000000");
         assertEquals(null, plan.getByPhoneNumber("00006000"));
     }
@@ -149,11 +149,11 @@ public class CallRecordTest {
     	Client client = new Client();
         client.address="asd";
         client.ci = "12345";
-      
+
         IPlanClient plan2 = new PlanClientPrepago(client, "00000065");
         assertEquals(null, plan2.getByPhoneNumber("00000000"));
     }
-    
+
     //////////////////////////
     @Test
     public void createClientWithParams(){
@@ -164,8 +164,8 @@ public class CallRecordTest {
         Client client2 = new Client(client.name,client.ci,client.address);
         assertEquals(client.ci, client2.ci);
     }
-    
-    
+
+
     @Test
     public void CallrecordToString(){
     	Client client = new Client();
@@ -186,6 +186,6 @@ public class CallRecordTest {
         assertEquals(record3, record.toString());
 
     }
-   
 
+*/
 }

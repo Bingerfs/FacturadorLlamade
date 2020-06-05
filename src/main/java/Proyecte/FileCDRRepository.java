@@ -1,5 +1,7 @@
 package Proyecte;
 
+import Proyecte.callRecord.CallRecordDto;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,18 +14,17 @@ public class FileCDRRepository implements ICDRRepository {
 
     private String fileName;
 
-    public FileCDRRepository(String fileName) {
+    FileCDRRepository(String fileName) {
         this.fileName = fileName;
     }
 
     @Override
-    public void addCallRecord(CallRecord callRecord) {
-        
+    public     void addCallRecord(CallRecordDto callRecord){
 
-    }
+}
 
     @Override
-    public List<CallRecord> getAllCallRecords() throws Exception {
+    public List<CallRecord> getAllCallRecords()  {
         List<CallRecord> callRecords = new ArrayList<>();
         try {
             BufferedReader in = new BufferedReader(new FileReader(fileName));
@@ -33,6 +34,7 @@ public class FileCDRRepository implements ICDRRepository {
 			String[] callRecordData = str.split(", ");
 			CallRecord callRecord = new CallRecord( Integer.parseInt(callRecordData[0]), callRecordData[1], callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]), Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
 			callRecords.add(callRecord);
+			System.out.println("datos"+callRecord);
         }
         in.close();   
         } catch (Exception e) {
@@ -42,14 +44,9 @@ public class FileCDRRepository implements ICDRRepository {
     }
 
     @Override
-    public CallRecord getCallRecordById() {
-        // TODO Auto-generated method stub
+    public CallRecord getCallRecordById(int id) {
         return null;
     }
 
-    
 
-    
-
-    
 }

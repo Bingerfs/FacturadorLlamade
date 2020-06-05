@@ -1,4 +1,6 @@
-package Proyecte;
+package Proyecte.client;
+
+import Proyecte.client.Client;
 
 import java.util.HashMap;
 import java.util.List;

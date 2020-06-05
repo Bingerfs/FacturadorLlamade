@@ -1,5 +1,11 @@
 package Proyecte;
 
+import Proyecte.IClientRepository;
+import Proyecte.client.Client;
+import Proyecte.client.ClientBoundaryIn;
+import Proyecte.client.ClientBoundaryOut;
+import Proyecte.client.ClientDto;
+
 import java.util.HashMap;
 import java.util.List;
 

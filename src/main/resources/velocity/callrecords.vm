@@ -1,3 +1,20 @@
-<div>
-    this is callrecords
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<div >
+    <table>
+        <tr>
+            <th>id</th>
+            <th>callerPhoneNumber</th>
+            <th>endPointPhoneNumber</th>
+        </tr>
+        #foreach($callrecord in $callRecords)
+        <tr>
+            <td>$callrecord.getId_callRecord()</td>
+            <td>$callrecord.getCallerPhoneNumber()</td>
+            <td>$callrecord.getEndPointPhoneNumber()</td>
+        </tr>
+        #end
+    </table>
+
 </div>
+#end

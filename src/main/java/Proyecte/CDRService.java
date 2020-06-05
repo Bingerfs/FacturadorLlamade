@@ -1,5 +1,7 @@
 package Proyecte;
 
+import Proyecte.callRecord.CallRecordDto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class CDRService {
         this.cdrRepository = persistOperator;
     }
 
-    public void addCDR(CallRecord callRecord){
+    public void addCDR(CallRecordDto callRecord){
         //this.list.add(callRecord);
         cdrRepository.addCallRecord(callRecord);
     }

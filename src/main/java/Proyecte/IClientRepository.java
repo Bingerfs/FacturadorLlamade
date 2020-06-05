@@ -1,5 +1,8 @@
 package Proyecte;
 
+import Proyecte.client.Client;
+import Proyecte.client.ClientDto;
+
 import java.util.List;
 
 public interface IClientRepository {
