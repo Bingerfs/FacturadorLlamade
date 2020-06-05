@@ -7,6 +7,10 @@
                id="avatar" name="avatar"
                accept=".txt">
     </div>
+    <ul id="menu">
+        <button class="button">Tarificar</button>
 
+
+    </ul>
 </div>
 #end
