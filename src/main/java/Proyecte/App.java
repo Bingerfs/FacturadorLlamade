@@ -14,12 +14,12 @@ public class App
     public static ICDRRepository icdrRepository=new CDRPrueba();
     public static List<CallRecord> callRecordList=new ArrayList<>();
     public static  UIController uiController=new UIController();
-    public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
+    //public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
 
     public static void main(String[] args) {
 
 
-        port(4567);
+        /*port(4567);
         staticFiles.location("/public");
         staticFiles.expireTime(600L);
         enableDebugScreen();
@@ -33,18 +33,20 @@ public class App
 
         //get("*",                     ViewUtil.notFound);
 
-        after("*",                   Filters.addGzipHeader);
+        after("*",                   Filters.addGzipHeader);*/
 
-        /*IClientRepository repository = new SqlClientRepository();
-        Client client = repository.getClientByCi("5656");
-        System.out.println(client.name);
-        IAccountRepository repositorya = new SqlAccountRepository();
-        List<Receivable> receivables = new ArrayList<>();
-        List<String> friends = new ArrayList<>();
-        friends.add("79789704");
+        //IClientRepository clientR = new FileClientRepository("clientangos.txt");
+        //Client client = clientR.getClientByCi("34");
+        //IAccountRepository repositorya = new FileAccountRepository("Accounts.txt", "Receivables.txt", new FileClientRepository("clientangos.txt"));
+        /*List<Receivable> receivables = new ArrayList<>();
+        String friends;
+        friends = "79789704";
         receivables.add(new FriendsReceivable(friends));
         Account account = new Account(client, "60774491", receivables, "Prepago");
         repositorya.createAccount(account);*/
+        //Account account3 = repositorya.getAccountByPhoneNumber("60774491");
 
+        ICDRRepository repository = new FileCDRRepository("Records.txt");
+        repository.getCallRecordById(0);
     }
 }

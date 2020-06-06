@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.protobuf.StringValue;
+
 public class FileClientRepository implements IClientRepository {
 
     private String fileName;
@@ -52,8 +54,22 @@ public class FileClientRepository implements IClientRepository {
 
     @Override
     public Client getClientByCi(String ci) {
-        // TODO Auto-generated method stub
-        return null;
+        Client client = null;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fileName));
+            String str = "";
+            while ((str = in.readLine()) != null) {
+                String[] clientData = str.split(", ");
+                if(ci.equals(clientData[1])){
+                    client = new Client(clientData[0], clientData[1], clientData[2]);
+                    break;
+                }
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return client;
     }
     
     

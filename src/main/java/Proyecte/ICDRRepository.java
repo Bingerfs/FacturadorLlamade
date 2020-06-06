@@ -6,6 +6,6 @@ import java.util.List;
 public interface ICDRRepository {
     void addCallRecord(CallRecord callRecord);
     List<CallRecord> getAllCallRecords() throws FileNotFoundException, Exception;
-    CallRecord getCallRecordById();
+    CallRecord getCallRecordById(int id);
 
 }
