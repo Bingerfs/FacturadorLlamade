@@ -1,5 +1,7 @@
 package Proyecte;
 
+import Proyecte.callRecord.CallRecordDto;
+
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -11,7 +13,7 @@ public class SqlCDRRepository implements ICDRRepository {
     
 
     @Override
-    public void addCallRecord(CallRecord callRecord) {
+    public void addCallRecord(CallRecordDto callRecord) {
         // TODO Auto-generated method stub
 
     }
@@ -23,11 +25,17 @@ public class SqlCDRRepository implements ICDRRepository {
     }
 
     @Override
-    public CallRecord getCallRecordById() {
-        // TODO Auto-generated method stub
+    public CallRecord getCallRecordById(int id) {
         return null;
     }
-    
+
+    /*
+        @Override
+        public CallRecord getCallRecordById() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+        */
     public static void createNewDatabase(String fileName) {
 
         String url = "jdbc:sqlite:C:/sqlite/db/" + fileName;

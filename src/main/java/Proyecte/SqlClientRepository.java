@@ -2,6 +2,9 @@ package Proyecte;
 
 import java.util.List;
 
+import Proyecte.client.Client;
+import Proyecte.client.ClientDto;
+import Proyecte.client.ClientMapper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,5 +1,8 @@
 package Proyecte;
 
+import Proyecte.callRecord.CallRecordPresenter;
+import Proyecte.client.ClientPresenter;
+
 import java.util.ArrayList;
 import java.util.List;
 import static spark.Spark.*;
@@ -11,10 +14,10 @@ import static spark.debug.DebugScreen.*;
 public class App 
 {
 
-    public static ICDRRepository icdrRepository=new CDRPrueba();
     public static List<CallRecord> callRecordList=new ArrayList<>();
     public static  UIController uiController=new UIController();
-    //public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
+    public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
+    public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository("callrecordslist.txt"), new CallRecordPresenter()));
 
     public static void main(String[] args) {
 
@@ -30,6 +33,7 @@ public class App
        // get(Path.Web.CALLRECORDS,    uiController.fetchAllBooks);
         get(Path.Web.INDEX,    uiController.index);
         get(Path.Web.CLIENTS_ALL,   clientController.getAllClients);
+        get(Path.Web.CALLRECORDS,   callRecordController.getAllCallRecords);
 
         //get("*",                     ViewUtil.notFound);
 

@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CallRecord {
-    int id_callRecord;
-    String callerPhoneNumber;
-    String endPointPhoneNumber;
-    String date;
-    Integer startingCallTime;
-    Float callDuration;
-    Float callCost;
+    public int id_callRecord;
+    public String callerPhoneNumber;
+    public String endPointPhoneNumber;
+    public String date;
+    public Integer startingCallTime;
+    public Float callDuration;
+    public Float callCost;
     
 
     CallRecord(){
@@ -60,7 +60,23 @@ public class CallRecord {
 
     
 
-	
+    public Integer getStartingCallTime() {
+        return startingCallTime;
+    }
 
+    public Float getCallDuration() {
+        return callDuration;
+    }
 
+    public Float getCallCost() {
+        return callCost;
+    }
+
+    public String getCallerPhoneNumber() {
+        return callerPhoneNumber;
+    }
+
+    public String getEndPointPhoneNumber() {
+        return endPointPhoneNumber;
+    }
 }

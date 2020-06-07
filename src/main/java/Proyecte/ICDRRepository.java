@@ -1,5 +1,7 @@
 package Proyecte;
 
+import Proyecte.callRecord.CallRecordDto;
+
 import java.io.FileNotFoundException;
 import java.util.List;
 

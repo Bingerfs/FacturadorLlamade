@@ -1,4 +1,4 @@
-package Proyecte;
+package Proyecte.client;
 
 public class Client {
     public String name;

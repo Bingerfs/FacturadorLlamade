@@ -16,7 +16,7 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
-    @Test
+    /*@Test
     public void shouldAnswerWithTrue()
     {
         assertTrue( true );
@@ -34,5 +34,5 @@ public class AppTest
        
         callRecords =App.initializeCallRecords();
         assertEquals( callRecord.callCost,callRecords.get(0).callCost );
-    }
+    }*/
 }
