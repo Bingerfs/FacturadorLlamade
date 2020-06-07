@@ -36,17 +36,17 @@ public class SqlAccountRepository implements IAccountRepository {
     @Override
     public Account getAccountByPhoneNumber(String phoneNumber) {
         Session session = factory.openSession();
-        Query q = session.createQuery("From Client where phoneNumber="+phoneNumber);
+        Query q = session.createQuery("From Account where phone_number="+phoneNumber);
         Account account= (Account)q.uniqueResult();
         session.close();
-        return null;
+        return account;
     }
 
     public SqlAccountRepository() {
         config = new Configuration();
         config.configure();
-        config.addAnnotatedClass(Account.class);
-        config.addResource("Account.hbm.xml");
+        config.addClass(Client.class);
+        config.addClass(Account.class);
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(serviceRegistry);
     }

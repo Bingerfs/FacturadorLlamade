@@ -21,8 +21,10 @@ public class CallRecord {
 
     }
 
+    
+
     public void calculateCost() {
-        IAccountRepository accountRepository = new SqlAccountRepository();
+        IAccountRepository accountRepository = new FileAccountRepository("Accounts.txt");
         Account account = accountRepository.getAccountByPhoneNumber(callerPhoneNumber);
         IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(this, account);
         callCost = calculator.calculateRate();
@@ -46,13 +48,17 @@ public class CallRecord {
         this.callCost = callCost;
     }
 
-    public int getId_callRecord() {
-        return id_callRecord;
+    public CallRecord(String callerPhoneNumber, String endPointPhoneNumber, String date, Integer startingCallTime,
+            Float callDuration, Float callCost) {
+        this.callerPhoneNumber = callerPhoneNumber;
+        this.endPointPhoneNumber = endPointPhoneNumber;
+        this.date = date;
+        this.startingCallTime = startingCallTime;
+        this.callDuration = callDuration;
+        this.callCost = callCost;
     }
 
-    public String getDate() {
-        return date;
-    }
+    
 
     public Integer getStartingCallTime() {
         return startingCallTime;

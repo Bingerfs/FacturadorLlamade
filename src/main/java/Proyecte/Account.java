@@ -11,6 +11,10 @@ public class Account {
     String accoundType;
     List<Receivable> receivables;
 
+    public Account(){
+        
+    }
+
     public Account(Client client, String phoneNumber, List<Receivable> receivables, String accountType) {
         this.client = client;
         this.phoneNumber = phoneNumber;
@@ -53,6 +57,14 @@ public class Account {
 
     public void setReceivables(List<Receivable> receivables) {
         this.receivables = receivables;
+    }
+
+    public void setAccountType(String accountType){
+        this.accoundType = accountType;
+    }
+
+    public String getAccountType(){
+        return accoundType;
     }
 
     
