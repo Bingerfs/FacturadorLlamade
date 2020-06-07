@@ -24,7 +24,7 @@ public class CallRecord {
     
 
     public void calculateCost() {
-        IAccountRepository accountRepository = new FileAccountRepository("Accounts.txt");
+        IAccountRepository accountRepository = new FileAccountRepository("Accounts.txt","Receivables.txt",new FileClientRepository("clientangos.txt"));
         Account account = accountRepository.getAccountByPhoneNumber(callerPhoneNumber);
         IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(this, account);
         callCost = calculator.calculateRate();

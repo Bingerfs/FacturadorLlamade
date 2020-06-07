@@ -1,4 +1,5 @@
 package Proyecte;
+import Proyecte.client.Client;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

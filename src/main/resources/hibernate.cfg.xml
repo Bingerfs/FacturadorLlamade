@@ -23,7 +23,7 @@
     <property name="current_session_context_class">thread</property>
 
 
-    <mapping resource="./Client.hbm.xml" />
+    <mapping resource="Client.hbm.xml" />
     <mapping resource="Account.hbm.xml" />
     <mapping resource="Receivable.hbm.xml" />
  

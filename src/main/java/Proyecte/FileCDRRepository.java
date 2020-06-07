@@ -19,7 +19,7 @@ public class FileCDRRepository implements ICDRRepository {
     }
 
     @Override
-    public void addCallRecord(CallRecord callRecord) {
+    public void addCallRecord(CallRecordDto callRecord) {
         try {
 
             // clientFile.createNewFile();

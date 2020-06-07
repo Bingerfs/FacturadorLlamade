@@ -23,7 +23,8 @@ public class SqlClientRepository implements IClientRepository {
     SqlClientRepository() {
         config = new Configuration();
         config.configure();
-        config.addClass(Client.class);
+        config.addAnnotatedClass(Client.class);
+        config.addResource("Client.hbm.xml");
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(serviceRegistry);
 
