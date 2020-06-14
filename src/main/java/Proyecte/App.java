@@ -3,6 +3,7 @@ package Proyecte;
 import Proyecte.callRecord.CallRecordPresenter;
 import Proyecte.client.ClientPresenter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import static spark.Spark.*;
@@ -20,9 +21,10 @@ public class App
     public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository("callrecordslist.txt"), new CallRecordPresenter()));
 
     public static void main(String[] args) {
+        File storageDir = new File("storage");
+        if (!storageDir.isDirectory()) storageDir.mkdir();
 
-
-        /*port(4567);
+        port(4567);
         staticFiles.location("/public");
         staticFiles.expireTime(600L);
         enableDebugScreen();
@@ -34,10 +36,10 @@ public class App
         get(Path.Web.INDEX,    uiController.index);
         get(Path.Web.CLIENTS_ALL,   clientController.getAllClients);
         get(Path.Web.CALLRECORDS,   callRecordController.getAllCallRecords);
-
+        post(Path.Web.INDEX,callRecordController.getfileCallrecords);
         //get("*",                     ViewUtil.notFound);
 
-        after("*",                   Filters.addGzipHeader);*/
+        after("*",                   Filters.addGzipHeader);
 
         //IClientRepository clientR = new FileClientRepository("clientangos.txt");
         //Client client = clientR.getClientByCi("34");

@@ -58,7 +58,14 @@ public class CallRecord {
         this.callCost = callCost;
     }
 
-    
+
+    public int getId_callRecord() {
+        return id_callRecord;
+    }
+
+    public String getDate() {
+        return date;
+    }
 
     public Integer getStartingCallTime() {
         return startingCallTime;

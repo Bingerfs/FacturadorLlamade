@@ -26,11 +26,7 @@
     <div id="content">
         $bodyContent
     </div>
-    <ul id="menu">
-        <button class="button">Button</button>
 
-
-    </ul>
 </main>
 <!--
 <footer>

@@ -23,9 +23,9 @@
     <property name="current_session_context_class">thread</property>
 
 
-    <mapping resource="Client.hbm.xml" />
-    <mapping resource="Account.hbm.xml" />
-    <mapping resource="Receivable.hbm.xml" />
+   <mapping resource="src2/Client.hbm.xml" />
+    <mapping resource="src2/Account.hbm.xml" />
+    <mapping resource="src2/Receivable.hbm.xml" />
  
 </session-factory>
 </hibernate-configuration>
