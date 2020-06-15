@@ -16,18 +16,19 @@
 
     </nav>
     <ul>
+
         <li><a class="active" href="/">Call Records</a></li>
         <li><a href="#callrecords">Accounts</a></li>
         <li><a href="/callrecords/rated/">Rate call records</a></li>
         <li><a href="/clients/">Clients</a></li>
         <li><a href="#config">Configuration</a></li>
+
     </ul>
 </header>
 <main>
     <div id="content">
         $bodyContent
     </div>
-
 </main>
 <!--
 <footer>
