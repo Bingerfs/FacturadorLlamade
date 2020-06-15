@@ -16,21 +16,25 @@
 
     </nav>
     <ul>
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="/callrecords/">CALL RECORDS</a></li>
-        <li><a href="#contact">CALCULATE</a></li>
-        <li><a href="/clients/">CLIENTS</a></li>
+        <li><a class="active" href="/">Cargar CDR</a></li>
+        <li><a href="/callrecords/">Cargar cuentas</a></li>
+        <li><a href="#contact">Tarificar</a></li>
+        <li><a href="/callrecords/">Call records</a></li>
+        <li><a href="#contact">Configurar</a></li>
+        <li><a href="/clients/">Clientes</a></li>
     </ul>
 </header>
 <main>
     <div id="content">
         $bodyContent
     </div>
+    <!--
     <ul id="menu">
         <button class="button">Button</button>
 
 
     </ul>
+    -->
 </main>
 <!--
 <footer>
