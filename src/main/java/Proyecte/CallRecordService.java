@@ -21,7 +21,7 @@ public class CallRecordService implements CallRecordBoundaryIn {
     }
 
     @Override
-    public HashMap<String, Object> getAllCallRecords() {
+    public HashMap<String, Object> getAllCallRecords(){
         List<CallRecord> callRecords =icdrRepository.getAllCallRecords();
         return callRecordBoundaryOut.showAllCallRecords(callRecords);
     }

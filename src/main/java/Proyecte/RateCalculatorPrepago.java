@@ -12,14 +12,16 @@ public class RateCalculatorPrepago implements IRateCalculator{
     private float duration;
     private IRateCalculatorBySchedule schedule;
     private List<Receivable> receivables;
+    private String endpointNumber;
 
-    public RateCalculatorPrepago( float duration, IRateCalculatorBySchedule schedule, List<Receivable> receivables) {
+    public RateCalculatorPrepago( float duration, IRateCalculatorBySchedule schedule, List<Receivable> receivables, String endpointNumber) {
       
         this.ratePerMinute = (float)0;
         this.duration = duration;
         this.totalRate = 0;
         this.schedule = schedule;
         this.receivables = receivables;
+        this.endpointNumber = endpointNumber;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class RateCalculatorPrepago implements IRateCalculator{
         totalRate = duration*ratePerMinute;
         if(receivables !=null){
             for(Receivable receivable : receivables)
-                receivable.applyReceivable(totalRate, null);
+                totalRate = receivable.applyReceivable(totalRate, endpointNumber);
         } 
         return totalRate;
     }

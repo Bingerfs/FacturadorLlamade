@@ -1,6 +1,7 @@
 package Proyecte;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class CallRecord {
     public Integer startingCallTime;
     public Float callDuration;
     public Float callCost;
+    public String savedDate;
     
 
     CallRecord(){
@@ -24,7 +26,7 @@ public class CallRecord {
     
 
     public void calculateCost() {
-        IAccountRepository accountRepository = new FileAccountRepository("Accounts.txt");
+        IAccountRepository accountRepository = new FileAccountRepository("Accounts.txt","Receivables.txt",new FileClientRepository("clientangos.txt"));
         Account account = accountRepository.getAccountByPhoneNumber(callerPhoneNumber);
         IRateCalculator calculator = RateCalculatorFactory.getRateCalculator(this, account);
         callCost = calculator.calculateRate();
@@ -58,7 +60,14 @@ public class CallRecord {
         this.callCost = callCost;
     }
 
-    
+
+    public int getId_callRecord() {
+        return id_callRecord;
+    }
+
+    public String getDate() {
+        return date;
+    }
 
     public Integer getStartingCallTime() {
         return startingCallTime;
@@ -78,5 +87,9 @@ public class CallRecord {
 
     public String getEndPointPhoneNumber() {
         return endPointPhoneNumber;
+    }
+
+    public String getSavedDate(){
+        return savedDate;
     }
 }

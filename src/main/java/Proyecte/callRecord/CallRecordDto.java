@@ -9,8 +9,9 @@ public class CallRecordDto {
     public final  Integer startingCallTime;
     public final Float callDuration;
     public final Float callCost;
+    public final String savedDate;
 
-     CallRecordDto(int id_callRecord, String callerPhoneNumber, String endPointPhoneNumber, String date, Integer startingCallTime, Float callDuration, Float callCost) {
+     CallRecordDto(int id_callRecord, String callerPhoneNumber, String endPointPhoneNumber, String date, Integer startingCallTime, Float callDuration, Float callCost, String savedDate) {
         this.id_callRecord = id_callRecord;
         this.callerPhoneNumber = callerPhoneNumber;
         this.endPointPhoneNumber = endPointPhoneNumber;
@@ -18,5 +19,6 @@ public class CallRecordDto {
         this.startingCallTime = startingCallTime;
         this.callDuration = callDuration;
         this.callCost = callCost;
+        this.savedDate = savedDate;
     }
 }

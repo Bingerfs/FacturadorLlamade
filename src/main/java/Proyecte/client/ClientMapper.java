@@ -1,8 +1,5 @@
 package Proyecte.client;
 
-import Proyecte.client.Client;
-import Proyecte.client.ClientDto;
-
 public class ClientMapper {
     public Client transformClient(ClientDto data){
         return new Client(data.name, data.ci, data.address);
