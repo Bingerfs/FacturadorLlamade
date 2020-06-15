@@ -9,13 +9,13 @@ import java.util.List;
 
 public  class CRReader {
      public static String filename;
+     public static List<CallRecord> callRecords;
 
-     public static List<CallRecord>getfilecdr(){
-         List<CallRecord> callRecords = new ArrayList<>();
+     public static List<CallRecord>readfilecdr(){
+         callRecords = new ArrayList<>();
          try {
-             BufferedReader in = new BufferedReader(new FileReader(filename));
+             BufferedReader in = new BufferedReader(new FileReader("./storage/"+filename));
              String str = "";
-             str = in.readLine(); // skip header
              while ((str = in.readLine()) != null) {
                  String[] callRecordData = str.split(", ");
                  CallRecord callRecord = new CallRecord( Integer.parseInt(callRecordData[0]), callRecordData[1], callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]), Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
@@ -27,6 +27,11 @@ public  class CRReader {
              //TODO: handle exception
          }
          return callRecords;
+     }
+
+     public static void rateAllRecords(){
+         for(int i =0; i<callRecords.size(); i++)
+             callRecords.get(i).calculateCost();
      }
 
 }

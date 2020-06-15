@@ -1,6 +1,7 @@
 package Proyecte;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class CallRecord {
     public Integer startingCallTime;
     public Float callDuration;
     public Float callCost;
+    public String savedDate;
     
 
     CallRecord(){
@@ -85,5 +87,9 @@ public class CallRecord {
 
     public String getEndPointPhoneNumber() {
         return endPointPhoneNumber;
+    }
+
+    public String getSavedDate(){
+        return savedDate;
     }
 }

@@ -1,6 +1,7 @@
 package Proyecte;
 
 import Proyecte.callRecord.CallRecordBoundaryIn;
+import Proyecte.callRecord.CallRecordMapper;
 import Proyecte.client.ClientBoundaryIn;
 import spark.Request;
 import spark.Response;
@@ -34,10 +35,24 @@ public class CallRecordController {
         System.out.println("fle is "+filepath);
         CRReader.filename=filepath;
         HashMap<String, Object> model = new HashMap<>();
-        model.put("callRecords", CRReader.getfilecdr());
+        model.put("callRecords", CRReader.readfilecdr());
         return ViewUtil.render(request, model, Path.Template.CALLRECORDS_ALL);
         //return ViewUtil.render(request, callRecordBoundaryIn.getAllCallRecords(), Path.Template.CALLRECORDS_ALL);
 
        // return ViewUtil.render(request, model, Path.Template.INDEX);
+    };
+
+    public Route rateUploadedRecords = (Request request, Response response) -> {
+        CRReader.rateAllRecords();
+        HashMap<String, Object> model = new HashMap<>();
+        model.put("callRecords", CRReader.callRecords);
+        return ViewUtil.render(request, model, Path.Template.RCALLRECORDS);
+    };
+
+    public Route saveCdrList = (Request request, Response response) -> {
+        CallRecordMapper mapper = new CallRecordMapper();
+        for(CallRecord callRecord : CRReader.callRecords)
+            callRecordBoundaryIn.createCallRecord(mapper.transClient(callRecord));
+        return getAllCallRecords;
     };
 }

@@ -23,7 +23,7 @@ public class RateCalculatorWow implements IRateCalculator{
         totalRate = duration * ratePerMinute;
         if(receivables !=null){
             for(Receivable receivable : receivables)
-                receivable.applyReceivable(totalRate, endpointNumber);
+                totalRate = receivable.applyReceivable(totalRate, endpointNumber);
         } 
         return totalRate;
     }

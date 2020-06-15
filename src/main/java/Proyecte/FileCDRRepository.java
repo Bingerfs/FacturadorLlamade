@@ -7,7 +7,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FileCDRRepository implements ICDRRepository {
@@ -28,7 +30,9 @@ public class FileCDRRepository implements ICDRRepository {
 
             // clientFile.createNewFile();
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
-            String line = callRecord.id_callRecord + ", " + callRecord.callerPhoneNumber + ", " + callRecord.endPointPhoneNumber + ", " + callRecord.date + ", " + callRecord.startingCallTime + ", " + callRecord.callDuration + ", " + callRecord.callCost;
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd:MM:yyyy:HH:mm");
+            String line = callRecord.id_callRecord + ", " + callRecord.callerPhoneNumber + ", " + callRecord.endPointPhoneNumber + ", " + callRecord.date + ", " + callRecord.startingCallTime + ", " + callRecord.callDuration + ", " + callRecord.callCost+", "+formatter.format(date);
             out.write(line);
             out.newLine();
             out.close();
@@ -47,7 +51,8 @@ public class FileCDRRepository implements ICDRRepository {
 		str = in.readLine(); // skip header
 		while ((str = in.readLine()) != null) {
 			String[] callRecordData = str.split(", ");
-			CallRecord callRecord = new CallRecord( Integer.parseInt(callRecordData[0]), callRecordData[1], callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]), Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
+            CallRecord callRecord = new CallRecord( Integer.parseInt(callRecordData[0]), callRecordData[1], callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]), Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
+            callRecord.savedDate = callRecordData[7];
 			callRecords.add(callRecord);
 			System.out.println("datos"+callRecord);
         }

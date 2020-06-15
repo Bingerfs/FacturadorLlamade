@@ -25,7 +25,7 @@ public class RateCalculatorPostpago implements IRateCalculator {
         totalRate = callDuration * ratePerMinute; 
         if(receivables != null){
             for(Receivable receivable : receivables)
-                receivable.applyReceivable(totalRate, endpointNumber);
+                totalRate = receivable.applyReceivable(totalRate, endpointNumber);
         }
         return totalRate;
     }

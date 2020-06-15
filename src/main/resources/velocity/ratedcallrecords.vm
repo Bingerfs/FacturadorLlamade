@@ -9,7 +9,6 @@
             <th>Starting time</th>
             <th>Date</th>
             <th>Call cost</th>
-            <th>Saved at<th>
         </tr>
         #foreach($callrecord in $callRecords)
         <tr>
@@ -19,12 +18,16 @@
             <td>$callrecord.getStartingCallTime()</td>
             <td>$callrecord.getDate()</td>
             <td>$callrecord.getCallCost()</td>
-            #if($callrecord.getSavedDate())
-            <td>$callrecord.getSavedDate()</td>
-            #end
         </tr>
         #end
     </table>
 
+</div>
+<div>
+    <form method="post" action="/callrecords/">
+
+
+                <button class="button" type="submit">Save rated cdr's</button>
+        </form>
 </div>
 #end

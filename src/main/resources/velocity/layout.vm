@@ -16,10 +16,11 @@
 
     </nav>
     <ul>
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="/callrecords/">CALL RECORDS</a></li>
-        <li><a href="#contact">CALCULATE</a></li>
-        <li><a href="/clients/">CLIENTS</a></li>
+        <li><a class="active" href="/">Call Records</a></li>
+        <li><a href="#callrecords">Accounts</a></li>
+        <li><a href="/callrecords/rated/">Rate call records</a></li>
+        <li><a href="/clients/">Clients</a></li>
+        <li><a href="#config">Configuration</a></li>
     </ul>
 </header>
 <main>
