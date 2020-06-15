@@ -29,18 +29,15 @@ public class CallRecordController {
         return ViewUtil.render(request, callRecordBoundaryIn.getAllCallRecords(), Path.Template.CALLRECORDS_ALL);
     };
     public  Route getfileCallrecords = (Request request, Response response) -> {
-        //request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("D:/tmp"));
-        //String file=request.queryParams("file");
-
-        Map<String, Object> model = new HashMap<>();
+        //Map<String, Object> model = new HashMap<>();
         String filepath=getfileurl(request);
         System.out.println("fle is "+filepath);
+        CRReader.filename=filepath;
+        HashMap<String, Object> model = new HashMap<>();
+        model.put("callRecords", CRReader.getfilecdr());
+        return ViewUtil.render(request, model, Path.Template.CALLRECORDS_ALL);
+        //return ViewUtil.render(request, callRecordBoundaryIn.getAllCallRecords(), Path.Template.CALLRECORDS_ALL);
 
-        /*model.put("authenticationSucceeded", true);
-        request.session().attribute("currentUser", getQueryUsername(request));
-        if (getQueryLoginRedirect(request) != null) {
-            response.redirect(getQueryLoginRedirect(request));
-        }*/
-        return ViewUtil.render(request, model, Path.Template.INDEX);
+       // return ViewUtil.render(request, model, Path.Template.INDEX);
     };
 }

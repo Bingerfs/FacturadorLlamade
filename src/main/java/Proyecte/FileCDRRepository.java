@@ -13,11 +13,15 @@ import java.util.List;
 public class FileCDRRepository implements ICDRRepository {
 
     private String fileName;
+    FileCDRRepository() {
 
+    }
     FileCDRRepository(String fileName) {
         this.fileName = fileName;
     }
-
+    public void setFileName(String fileName){
+        this.fileName=fileName;
+    }
     @Override
     public void addCallRecord(CallRecordDto callRecord) {
         try {

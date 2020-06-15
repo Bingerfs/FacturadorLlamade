@@ -18,11 +18,13 @@ public class App
     public static List<CallRecord> callRecordList=new ArrayList<>();
     public static  UIController uiController=new UIController();
     public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
-    public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository("callrecordslist.txt"), new CallRecordPresenter()));
+   public static ICDRRepository icdrRepository=new FileCDRRepository();
+    public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository(CRReader.filename), new CallRecordPresenter()));
 
     public static void main(String[] args) {
         File storageDir = new File("storage");
         if (!storageDir.isDirectory()) storageDir.mkdir();
+        System.out.println("file name "+ CRReader.filename);
 
         port(4567);
         staticFiles.location("/public");

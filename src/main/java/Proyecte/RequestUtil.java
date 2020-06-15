@@ -24,17 +24,19 @@ public class RequestUtil {
 
     public static String getfileurl(Request request) {
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement(""));
+        String file="none";
         try {
             Part filePart = request.raw().getPart("file");
             String uploadedFileName = filePart.getSubmittedFileName();
+            file=uploadedFileName;
             InputStream stream = filePart.getInputStream();
             // Write stream to file under storage folder
-            System.out.println("llega aqui");
+            System.out.println("llega aqui "+uploadedFileName);
             Files.copy(stream, Paths.get("storage").resolve(uploadedFileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException | ServletException e) {
             return "Exception occurred while uploading file" + e.getMessage();
         }
-        return "File successfully uploaded";
+        return file;
         //return request.queryParams("file");
     }
 
