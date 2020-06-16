@@ -19,6 +19,7 @@ public class RestController {
 
     public Route getRecordsByPhoneNumber = (Request request, Response response) -> {
         String phoneNumber = request.queryParams("phoneNumber");
+        System.out.println(phoneNumber);
         List<CallRecordDto> data = restBoundaryIn.getCallRecordsByPhone(phoneNumber);
         return restBoundaryOut.onRestRetrieval(data);
     };
