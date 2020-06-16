@@ -11,9 +11,11 @@ import spark.Route;
 
 public class AccountController {
     private AccountBoundaryIn accountBoundaryIn;
+    private AccountBoundaryOut accountBoundaryOut;
 
-    public AccountController(AccountBoundaryIn accountBoundaryIn) {
+    public AccountController(AccountBoundaryIn accountBoundaryIn, AccountBoundaryOut accountBoundaryOut) {
         this.accountBoundaryIn = accountBoundaryIn;
+        this.accountBoundaryOut = accountBoundaryOut;
     }
 
     public Route renderView = (Request request, Response response) -> {
@@ -23,10 +25,8 @@ public class AccountController {
     
     public Route saveAccounts = (Request request, Response response) -> {
         String filepath=getfileurl(request);
-        System.out.println("fle is "+filepath);
         AccountReader.filename = filepath;
-        HashMap<String, Object> model = new HashMap<>();
-        model.put("accounts", AccountReader.readFile());
+        HashMap<String, Object> model = accountBoundaryOut.onSaveAccountsFromFile(AccountReader.readFile());
         for(Account account : AccountReader.accounts)
             accountBoundaryIn.createAccount(account);
         return ViewUtil.render(request, model, Path.Template.ACCOUNTS);

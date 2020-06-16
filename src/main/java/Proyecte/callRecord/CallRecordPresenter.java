@@ -9,7 +9,7 @@ import java.util.List;
 public class CallRecordPresenter implements CallRecordBoundaryOut {
 
     @Override
-    public HashMap<String, Object> showAllCallRecords(List<CallRecord> callRecords) {
+    public HashMap<String, Object> onShowAllCallRecords(List<CallRecordDto> callRecords) {
         HashMap<String, Object> model = new HashMap<>();
         model.put("callRecords", callRecords);
         return model;

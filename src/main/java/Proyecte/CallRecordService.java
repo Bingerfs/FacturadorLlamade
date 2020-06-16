@@ -15,12 +15,10 @@ import java.util.List;
 
 public class CallRecordService implements CallRecordBoundaryIn {
     private ICDRRepository icdrRepository;
-    private CallRecordBoundaryOut callRecordBoundaryOut;
     private CallRecordMapper mapper;
 
-     CallRecordService(ICDRRepository icdrRepository, CallRecordBoundaryOut callRecordBoundaryOut) {
+     CallRecordService(ICDRRepository icdrRepository) {
         this.icdrRepository = icdrRepository;
-        this.callRecordBoundaryOut = callRecordBoundaryOut;
         mapper = new CallRecordMapper();
     }
 
@@ -33,8 +31,8 @@ public class CallRecordService implements CallRecordBoundaryIn {
     }
 
     @Override
-    public void createCallRecord(CallRecordDto client) {
-        icdrRepository.addCallRecord(client);
+    public void createCallRecord(CallRecordDto callRecord) {
+        icdrRepository.addCallRecord(callRecord);
     }
 
     @Override

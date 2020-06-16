@@ -8,6 +8,7 @@ public class Path {
         @Getter public static final String CLIENTS_ALL = "/clients/";
         @Getter public static final String RCALLRECORDS = "/callrecords/rated/";
         @Getter public static final String UPACCOUNTS = "/accounts/";
+        @Getter public static final String RETRIEVE = "/retrieve/";
     }
 
     public static class Template {

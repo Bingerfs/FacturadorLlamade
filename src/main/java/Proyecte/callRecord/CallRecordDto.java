@@ -21,4 +21,37 @@ public class CallRecordDto {
         this.callCost = callCost;
         this.savedDate = savedDate;
     }
+
+    public int getId_callRecord() {
+        return id_callRecord;
+    }
+
+    public String getCallerPhoneNumber() {
+        return callerPhoneNumber;
+    }
+
+    public String getEndPointPhoneNumber() {
+        return endPointPhoneNumber;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Integer getStartingCallTime() {
+        return startingCallTime;
+    }
+
+    public Float getCallDuration() {
+        return callDuration;
+    }
+
+    public Float getCallCost() {
+        return callCost;
+    }
+
+    public String getSavedDate() {
+        return savedDate;
+    }
+    
 }

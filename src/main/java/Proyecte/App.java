@@ -20,8 +20,11 @@ public class App
     public static  UIController uiController=new UIController();
     public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
    public static ICDRRepository icdrRepository=new FileCDRRepository();
-    public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository("Records.txt"), new CallRecordPresenter()));
-    public static AccountController accountController = new AccountController(new AccountService(new FileAccountRepository("Accounts.txt", "Receivables.txt", new FileClientRepository("clientangos.txt"))));
+    public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository("Records.txt")), new CallRecordPresenter());
+    public static AccountController accountController = new AccountController(new AccountService(new FileAccountRepository("Accounts.txt", "Receivables.txt", new FileClientRepository("clientangos.txt"))),
+            new AccountPresenter());
+    public static RestController restController = new RestController(new RestService(new FileCDRRepository("Records.txt")), new RestPresenter());
+    
     public static void main(String[] args) {
         File storageDir = new File("storage");
         if (!storageDir.isDirectory()) storageDir.mkdir();
@@ -31,7 +34,8 @@ public class App
         staticFiles.location("/public");
         staticFiles.expireTime(600L);
         enableDebugScreen();
-
+        
+        enableCORS("*", "*", "*");
         before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
 
@@ -44,9 +48,11 @@ public class App
         post(Path.Web.CALLRECORDS, callRecordController.saveCdrList);
         get(Path.Web.UPACCOUNTS, accountController.renderView);
         post(Path.Web.UPACCOUNTS, accountController.saveAccounts);
+        get(Path.Web.RETRIEVE, restController.getRecordsByPhoneNumber);
         //get("*",                     ViewUtil.notFound);
 
         after("*",                   Filters.addGzipHeader);
+
 
         /*IClientRepository clientR = new FileClientRepository("clientangos.txt");
         Client client = clientR.getClientByCi("34");
@@ -65,5 +71,31 @@ public class App
 
         //ICDRRepository repository = new FileCDRRepository("Records.txt");
         //repository.getCallRecordById(0);
+    }
+
+    private static void enableCORS(final String origin, final String methods, final String headers) {
+
+        options("/*", (request, response) -> {
+    
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
+    
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+    
+            return "OK";
+        });
+    
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", origin);
+            response.header("Access-Control-Request-Method", methods);
+            response.header("Access-Control-Allow-Headers", headers);
+            // Note: this may or may not be necessary in your particular application
+            response.type("application/json");
+        });
     }
 }

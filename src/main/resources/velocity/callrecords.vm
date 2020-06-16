@@ -13,14 +13,14 @@
         </tr>
         #foreach($callrecord in $callRecords)
         <tr>
-            <td>$callrecord.getId_callRecord()</td>
-            <td>$callrecord.getCallerPhoneNumber()</td>
-            <td>$callrecord.getEndPointPhoneNumber()</td>
-            <td>$callrecord.getStartingCallTime()</td>
-            <td>$callrecord.getDate()</td>
-            <td>$callrecord.getCallCost()</td>
-            #if($callrecord.getSavedDate())
-            <td>$callrecord.getSavedDate()</td>
+            <td>$callrecord.Id_callRecord</td>
+            <td>$callrecord.CallerPhoneNumber</td>
+            <td>$callrecord.EndPointPhoneNumber</td>
+            <td>$callrecord.StartingCallTime</td>
+            <td>$callrecord.Date</td>
+            <td>$callrecord.CallCost</td>
+            #if($callrecord.SavedDate)
+            <td>$callrecord.SavedDate</td>
             #end
         </tr>
         #end

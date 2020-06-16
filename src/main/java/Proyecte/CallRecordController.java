@@ -1,6 +1,8 @@
 package Proyecte;
 
 import Proyecte.callRecord.CallRecordBoundaryIn;
+import Proyecte.callRecord.CallRecordBoundaryOut;
+import Proyecte.callRecord.CallRecordDto;
 import Proyecte.callRecord.CallRecordMapper;
 import Proyecte.client.ClientBoundaryIn;
 import spark.Request;
@@ -18,21 +20,25 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CallRecordController {
     private CallRecordBoundaryIn callRecordBoundaryIn;
-    CallRecordController(CallRecordBoundaryIn callRecordBoundaryIn){
+    private CallRecordBoundaryOut callRecordBoundaryOut;
+    CallRecordController(CallRecordBoundaryIn callRecordBoundaryIn, CallRecordBoundaryOut callRecordBoundaryOut){
         this.callRecordBoundaryIn = callRecordBoundaryIn;
+        this.callRecordBoundaryOut = callRecordBoundaryOut;
     }
 
     public Route getAllCallRecords = (Request request, Response response) -> {
-        return ViewUtil.render(request, callRecordBoundaryIn.getAllCallRecords(), Path.Template.CALLRECORDS_ALL);
+        List<CallRecordDto> callRecords = callRecordBoundaryIn.getAllCallRecords();
+        HashMap<String, Object> model =callRecordBoundaryOut.onShowAllCallRecords(callRecords);
+        return ViewUtil.render(request, model, Path.Template.CALLRECORDS_ALL);
     };
     public  Route getfileCallrecords = (Request request, Response response) -> {
         //Map<String, Object> model = new HashMap<>();
         String filepath=getfileurl(request);
-        System.out.println("fle is "+filepath);
         CRReader.filename=filepath;
         HashMap<String, Object> model = new HashMap<>();
         model.put("callRecords", CRReader.readfilecdr());

@@ -7,6 +7,5 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface CallRecordBoundaryOut {
-    HashMap<String, Object> showAllCallRecords(List<CallRecord> callRecords);
-
+    HashMap<String, Object> onShowAllCallRecords(List<CallRecordDto> callRecords);
 }

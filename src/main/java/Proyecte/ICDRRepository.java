@@ -9,5 +9,5 @@ public interface ICDRRepository {
     void addCallRecord(CallRecordDto callRecord);
     List<CallRecord> getAllCallRecords();
     CallRecord getCallRecordById(int id);
-
+    List<CallRecord> getCallRecordsByPhoneNumber(String phoneNumber);
 }

@@ -15,15 +15,19 @@ import java.util.List;
 public class FileCDRRepository implements ICDRRepository {
 
     private String fileName;
+
     FileCDRRepository() {
 
     }
+
     FileCDRRepository(String fileName) {
         this.fileName = fileName;
     }
-    public void setFileName(String fileName){
-        this.fileName=fileName;
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
+
     @Override
     public void addCallRecord(CallRecordDto callRecord) {
         try {
@@ -32,7 +36,9 @@ public class FileCDRRepository implements ICDRRepository {
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
             Date date = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat("dd:MM:yyyy:HH:mm");
-            String line = callRecord.id_callRecord + ", " + callRecord.callerPhoneNumber + ", " + callRecord.endPointPhoneNumber + ", " + callRecord.date + ", " + callRecord.startingCallTime + ", " + callRecord.callDuration + ", " + callRecord.callCost+", "+formatter.format(date);
+            String line = callRecord.id_callRecord + ", " + callRecord.callerPhoneNumber + ", "
+                    + callRecord.endPointPhoneNumber + ", " + callRecord.date + ", " + callRecord.startingCallTime
+                    + ", " + callRecord.callDuration + ", " + callRecord.callCost + ", " + formatter.format(date);
             out.write(line);
             out.newLine();
             out.close();
@@ -40,25 +46,26 @@ public class FileCDRRepository implements ICDRRepository {
             e.printStackTrace();
         }
 
-}
+    }
 
     @Override
-    public List<CallRecord> getAllCallRecords()  {
+    public List<CallRecord> getAllCallRecords() {
         List<CallRecord> callRecords = new ArrayList<>();
         try {
             BufferedReader in = new BufferedReader(new FileReader(fileName));
-		String str = "";
-		str = in.readLine(); // skip header
-		while ((str = in.readLine()) != null) {
-			String[] callRecordData = str.split(", ");
-            CallRecord callRecord = new CallRecord( Integer.parseInt(callRecordData[0]), callRecordData[1], callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]), Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
-            callRecord.savedDate = callRecordData[7];
-			callRecords.add(callRecord);
-			System.out.println("datos"+callRecord);
-        }
-        in.close();   
+            String str = "";
+            while ((str = in.readLine()) != null) {
+                String[] callRecordData = str.split(", ");
+                CallRecord callRecord = new CallRecord(Integer.parseInt(callRecordData[0]), callRecordData[1],
+                        callRecordData[2], callRecordData[3], Integer.parseInt(callRecordData[4]),
+                        Float.parseFloat(callRecordData[5]), Float.parseFloat(callRecordData[6]));
+                callRecord.savedDate = callRecordData[7];
+                callRecords.add(callRecord);
+                System.out.println("datos" + callRecord);
+            }
+            in.close();
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
         }
         return callRecords;
     }
@@ -71,8 +78,10 @@ public class FileCDRRepository implements ICDRRepository {
             String str = "";
             while ((str = in.readLine()) != null) {
                 String[] recordData = str.split(", ");
-                if(id == Integer.parseInt(recordData[0])){
-                    callRecord = new CallRecord(Integer.parseInt(recordData[0]), recordData[1], recordData[2], recordData[3], Integer.parseInt(recordData[4]), Float.parseFloat(recordData[5]), Float.parseFloat(recordData[6]));
+                if (id == Integer.parseInt(recordData[0])) {
+                    callRecord = new CallRecord(Integer.parseInt(recordData[0]), recordData[1], recordData[2],
+                            recordData[3], Integer.parseInt(recordData[4]), Float.parseFloat(recordData[5]),
+                            Float.parseFloat(recordData[6]));
                     break;
                 }
             }
@@ -82,6 +91,32 @@ public class FileCDRRepository implements ICDRRepository {
         }
         return callRecord;
     }
+
+    @Override
+    public List<CallRecord> getCallRecordsByPhoneNumber(String phoneNumber) {
+        List<CallRecord> callRecords = new ArrayList<>();
+        CallRecord callRecord;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fileName));
+            String str = "";
+            while ((str = in.readLine()) != null) {
+                String[] recordData = str.split(", ");
+                if (phoneNumber.equals(recordData[1])) {
+                    callRecord = new CallRecord(Integer.parseInt(recordData[0]), recordData[1], recordData[2],
+                            recordData[3], Integer.parseInt(recordData[4]), Float.parseFloat(recordData[5]),
+                            Float.parseFloat(recordData[6]));
+                    callRecords.add(callRecord);
+                }
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return callRecords;
+    }
+
+
+    
 
 
 }
