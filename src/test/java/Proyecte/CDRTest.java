@@ -19,7 +19,7 @@ public class CDRTest {
        CallRecord record = new CallRecord("60774491","79789705","1998",4,(float)60,(float)0);
 
        record.calculateCost();
-       Float expected = (float)42.0;
+       Float expected = (float)0.0;
        assertEquals(expected, record.callCost);
    }
     @Test
@@ -75,7 +75,9 @@ public class CDRTest {
     @Test
     public void callrecordPresenter(){
         CallRecordBoundaryOut callRecordBoundaryOut=new CallRecordPresenter();
+        CallRecordMapper mapper = new CallRecordMapper();
         List<CallRecord>list=new ArrayList<>();
+        List<CallRecordDto> dtos = new ArrayList<>();
         CallRecord record = new CallRecord();
         record.id_callRecord =1;
         record.callDuration = (float)60;
@@ -89,16 +91,17 @@ public class CDRTest {
         record.endPointPhoneNumber = "60774491";
         record.startingCallTime = 4;
         list.add(record2);
-
+        for(CallRecord callRecord : list)
+            dtos.add(mapper.transClient(callRecord));
         HashMap<String, Object> model = new HashMap<>();
-        model.put("callRecords", list);
-        assertEquals(model, callRecordBoundaryOut.showAllCallRecords(list));
+        model.put("callRecords", dtos);
+        assertEquals(model, callRecordBoundaryOut.onShowAllCallRecords(dtos));
     }
     @Test
     public void callrecordservice(){
-        CallRecordBoundaryIn callRecordBoundaryIn=new CallRecordService(new FileCDRRepository("Records.txt"), new CallRecordPresenter());
+        CallRecordBoundaryIn callRecordBoundaryIn=new CallRecordService(new FileCDRRepository("Records.txt"));
 
-        HashMap<String, Object> getAllCallRecords;
+        List<CallRecordDto> getAllCallRecords;
             getAllCallRecords =callRecordBoundaryIn.getAllCallRecords();
             //callRecordBoundaryOut.showAllCallRecords(callRecords);
         CallRecordDto record1 = new CallRecordDto(2,"60774491","79789705","1988",4,(float)60,(float)42.0,"15:02");
@@ -140,8 +143,9 @@ public class CDRTest {
         ICDRRepository icdrRepository=new FileCDRRepository();
 
         CRReader.filename="callrecordslist2.txt";
+        List<Integer> listavacia = new ArrayList<>();
         //List<CallRecord>lis2=CRReader.readfilecdr();
-        assertEquals(null, CRReader.readfilecdr());
+        assertEquals(listavacia, CRReader.readfilecdr());
     }
 
 

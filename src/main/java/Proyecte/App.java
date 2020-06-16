@@ -31,11 +31,11 @@ public class App
         System.out.println("file name "+ CRReader.filename);
 
         port(4567);
+
         staticFiles.location("/public");
         staticFiles.expireTime(600L);
         enableDebugScreen();
         
-        enableCORS("*", "*", "*");
         before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
 
@@ -52,25 +52,10 @@ public class App
         //get("*",                     ViewUtil.notFound);
 
         after("*",                   Filters.addGzipHeader);
+        enableCORS("*", "*", "*");
 
 
-        /*IClientRepository clientR = new FileClientRepository("clientangos.txt");
-        Client client = clientR.getClientByCi("34");
-        IAccountRepository repositorya = new FileAccountRepository("Accounts.txt", "Receivables.txt", new FileClientRepository("clientangos.txt"));
-        List<Receivable> receivables = new ArrayList<>();
-        String friends;
-        friends = "79789704";
-        receivables.add(new FriendsReceivable(friends));
-        Account account = new Account(client, "60774491", receivables, "Prepago");
-        repositorya.createAccount(account);
-        Account account3 = repositorya.getAccountByPhoneNumber("60774491");*/
-
-        //CallRecord callRecord = new CallRecord("60774491", "79789705", "12", 12, (float)6.0, (float)0.0);
-        //callRecord.calculateCost();
-        //System.out.println(callRecord);
-
-        //ICDRRepository repository = new FileCDRRepository("Records.txt");
-        //repository.getCallRecordById(0);
+        
     }
 
     private static void enableCORS(final String origin, final String methods, final String headers) {
@@ -95,7 +80,6 @@ public class App
             response.header("Access-Control-Request-Method", methods);
             response.header("Access-Control-Allow-Headers", headers);
             // Note: this may or may not be necessary in your particular application
-            response.type("application/json");
         });
     }
 }

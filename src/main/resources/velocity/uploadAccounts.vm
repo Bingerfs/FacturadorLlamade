@@ -12,7 +12,7 @@
                    id="file" name="file"
                    accept=".txt" required>
 
-                <button class="button" type="submit">LOAD ALL CDR</button>
+                <button class="button" type="submit">Upload accounts</button>
         </form>
 
     </div>
