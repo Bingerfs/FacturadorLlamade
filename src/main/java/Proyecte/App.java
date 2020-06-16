@@ -21,7 +21,7 @@ public class App
     public static ClientController clientController = new ClientController(new ClientService(new SqlClientRepository(), new ClientPresenter()));
    public static ICDRRepository icdrRepository=new FileCDRRepository();
     public static CallRecordController callRecordController = new CallRecordController(new CallRecordService(new FileCDRRepository("Records.txt"), new CallRecordPresenter()));
-
+    public static AccountController accountController = new AccountController(new AccountService(new FileAccountRepository("Accounts.txt", "Receivables.txt", new FileClientRepository("clientangos.txt"))));
     public static void main(String[] args) {
         File storageDir = new File("storage");
         if (!storageDir.isDirectory()) storageDir.mkdir();
@@ -42,6 +42,8 @@ public class App
         post(Path.Web.INDEX,callRecordController.getfileCallrecords);
         get(Path.Web.RCALLRECORDS, callRecordController.rateUploadedRecords);
         post(Path.Web.CALLRECORDS, callRecordController.saveCdrList);
+        get(Path.Web.UPACCOUNTS, accountController.renderView);
+        post(Path.Web.UPACCOUNTS, accountController.saveAccounts);
         //get("*",                     ViewUtil.notFound);
 
         after("*",                   Filters.addGzipHeader);

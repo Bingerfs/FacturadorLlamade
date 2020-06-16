@@ -27,7 +27,7 @@ public class FileAccountRepository implements IAccountRepository {
             // clientFile.createNewFile();
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
             String line = account.phoneNumber + ", " + account.balance + ", " +  account.accoundType + ", " ;
-            if(clientRepository.getClientByCi(account.client.ci) != null){
+            //if(clientRepository.getClientByCi(account.client.ci) != null){
                 line = line + account.client.ci;
                 out.write(line);
                 out.newLine();
@@ -43,7 +43,7 @@ public class FileAccountRepository implements IAccountRepository {
                     outR.newLine();
                 }
                 outR.close();
-            }
+            //}
             out.close();
         } catch (Exception e) {
             e.printStackTrace();

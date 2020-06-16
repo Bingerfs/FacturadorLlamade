@@ -67,6 +67,10 @@ public class Account {
         return accoundType;
     }
 
+    public String getClientName(){
+        return client.name;
+    }
+
     
     
 

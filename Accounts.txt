@@ -1,1 +1,2 @@
-60774491, 0, Prepago, 34
+70712345, 0, Prepago, ci
+60774491, 0, Postpago, ci

@@ -13,7 +13,7 @@ public class FriendsReceivable implements Receivable {
 
     @Override
     public Float applyReceivable(Float cost, String endpointNumber) {
-        if (friends.equals(endpointNumber))
+        if (friends.contains(endpointNumber))
             cost = (float) 0;
         return cost;
     }

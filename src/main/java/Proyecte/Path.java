@@ -7,6 +7,7 @@ public class Path {
         @Getter public static final String INDEX = "/";
         @Getter public static final String CLIENTS_ALL = "/clients/";
         @Getter public static final String RCALLRECORDS = "/callrecords/rated/";
+        @Getter public static final String UPACCOUNTS = "/accounts/";
     }
 
     public static class Template {
@@ -14,6 +15,8 @@ public class Path {
         public final static String INDEX = "/velocity/index.vm";
         public final static String CLIENTS = "/velocity/clients.vm";
         public static final String RCALLRECORDS = "/velocity/ratedcallrecords.vm";
+        public static final String ACCOUNTS = "/velocity/accounts.vm";
+        public static final String UPACCOUNTS = "/velocity/uploadAccounts.vm";
         //public static final String NOT_FOUND = "/velocity/notFound.vm";
     }
 

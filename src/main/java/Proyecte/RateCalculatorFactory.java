@@ -10,10 +10,10 @@ public class RateCalculatorFactory {
 		if(account.accoundType.equals("Prepago"))
 			calculator = new RateCalculatorPrepago(callRecord.callDuration, PlanScheduleFactory.getPlanSchedule(callRecord.startingCallTime), account.receivables, callRecord.endPointPhoneNumber);
 		
-	    if(account.accoundType == "Postpago")
+	    if(account.accoundType.equals("Postpago"))
 	        calculator = new RateCalculatorPostpago(callRecord.callDuration, account.receivables, callRecord.endPointPhoneNumber);
 	    
-	    if(account.accoundType == "Wow")
+	    if(account.accoundType.equals("Wow"))
 	        calculator = new RateCalculatorWow(callRecord.callDuration, account.receivables, callRecord.endPointPhoneNumber);
 	    
 	    return calculator;
