@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 public class SqlCDRRepository implements ICDRRepository {
 
-    
-
     @Override
     public void addCallRecord(CallRecordDto callRecord) {
         // TODO Auto-generated method stub
@@ -35,12 +33,9 @@ public class SqlCDRRepository implements ICDRRepository {
     }
 
     /*
-        @Override
-        public CallRecord getCallRecordById() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-        */
+     * @Override public CallRecord getCallRecordById() { // TODO Auto-generated
+     * method stub return null; }
+     */
     public static void createNewDatabase(String fileName) {
 
         String url = "jdbc:sqlite:C:/sqlite/db/" + fileName;
@@ -59,6 +54,12 @@ public class SqlCDRRepository implements ICDRRepository {
 
     public SqlCDRRepository(String fileName) {
         createNewDatabase(fileName);
+    }
+
+    @Override
+    public List<CallRecord> getCallRecordsByPhoneNumber(String phoneNumber) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
