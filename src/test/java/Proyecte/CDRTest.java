@@ -1,75 +1,169 @@
 package Proyecte;
 
+import Proyecte.callRecord.*;
+import Proyecte.client.Client;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class CDRTest {
 
-/*
+
+
+   @Test
+   public void callrecord(){
+       CallRecord record = new CallRecord("60774491","79789705","1998",4,(float)60,(float)0);
+
+       record.calculateCost();
+       Float expected = (float)42.0;
+       assertEquals(expected, record.callCost);
+   }
     @Test
-    public void createCDR(){
-        CDRService CDR=new CDRService();
-        Client client = new Client();
-        client.address="asd";
-        client.ci = "12345";
-        List<String> friends = new ArrayList<>();//friendgetterfromClient through Phone number
-        friends.add("60774491");
-        IPlanClient plan = new PlanClientPostpago(client, "00000000", friends);
+    public void callrecord_tostring(){
+        CallRecord record = new CallRecord("60774491","79789705","1998",4,(float)60,(float)0);
+       record.id_callRecord =1;
+       record.callDuration = (float)60;
+       record.callerPhoneNumber = "60774491";
+       record.endPointPhoneNumber = "79789705";
+       record.startingCallTime = 4;
+        record.calculateCost();
+        Float expected = (float)42.0;
+        //String expectedstring=record.getCallerPhoneNumber();
+        String date=record.getDate()+record.getId_callRecord();
+
+        String expectedstring = "callerPhoneNumber: "+record.getCallerPhoneNumber()+" endPointPhoneNumber= "+ record.getEndPointPhoneNumber() + " startingCallTime= "+record.getStartingCallTime()+
+                " callDuration: "+record.getCallDuration()+" callCost: "+record.getCallCost();
+        assertEquals(expectedstring+date, record.toString()+date);
+    }
+    @Test
+    public void callrecorddto(){
+
+        CallRecordDto record1 = new CallRecordDto(2,"00000000","60774491","1988",4,(float)60,(float)42.0,"15:02");
+
+       assertEquals("00000000", record1.callerPhoneNumber);
+
+
+    }
+    @Test
+    public void callrecordMapperto_DTO(){
+
+
+        CallRecordDto record1 = new CallRecordDto(2,"00000000","60774491","1988",4,(float)60,(float)42.0,"15:02");
+        CallRecordMapper callRecordMapper=new CallRecordMapper();
+        CallRecord callRecord=callRecordMapper.transformCallRecord(record1);
+        assertEquals("00000000", callRecord.callerPhoneNumber);
+
+
+    }
+    @Test
+    public void callrecordMapperto_CR(){
+
+
+        CallRecordDto record1 = new CallRecordDto(2,"00000000","60774491","1988",4,(float)60,(float)42.0,"15:02");
+        CallRecordMapper callRecordMapper=new CallRecordMapper();
+        CallRecord callRecord=callRecordMapper.transformCallRecord(record1);
+
+        CallRecordDto callRecordDto=callRecordMapper.transClient(callRecord);
+        assertEquals("00000000", callRecordDto.callerPhoneNumber);
+
+
+    }
+    @Test
+    public void callrecordPresenter(){
+        CallRecordBoundaryOut callRecordBoundaryOut=new CallRecordPresenter();
+        List<CallRecord>list=new ArrayList<>();
         CallRecord record = new CallRecord();
         record.id_callRecord =1;
         record.callDuration = (float)60;
         record.callerPhoneNumber = "00000000";
         record.endPointPhoneNumber = "60774491";
         record.startingCallTime = 4;
-        RepositoryClientPlan.add(plan);
-        record.calculateCost();
-        CDR.addCDR(record);
-        assertEquals(true, CDR.FindCDRbyId(1));
+        CallRecord record2 = new CallRecord();
+        record.id_callRecord =2;
+        record.callDuration = (float)60;
+        record.callerPhoneNumber = "00000040";
+        record.endPointPhoneNumber = "60774491";
+        record.startingCallTime = 4;
+        list.add(record2);
+
+        HashMap<String, Object> model = new HashMap<>();
+        model.put("callRecords", list);
+        assertEquals(model, callRecordBoundaryOut.showAllCallRecords(list));
+    }
+    @Test
+    public void callrecordservice(){
+        CallRecordBoundaryIn callRecordBoundaryIn=new CallRecordService(new FileCDRRepository("Records.txt"), new CallRecordPresenter());
+
+        HashMap<String, Object> getAllCallRecords;
+            getAllCallRecords =callRecordBoundaryIn.getAllCallRecords();
+            //callRecordBoundaryOut.showAllCallRecords(callRecords);
+        CallRecordDto record1 = new CallRecordDto(2,"60774491","79789705","1988",4,(float)60,(float)42.0,"15:02");
+        CallRecordMapper callRecordMapper=new CallRecordMapper();
+        CallRecord callRecord=callRecordMapper.transformCallRecord(record1);
+        callRecordBoundaryIn.createCallRecord(record1);
+        CallRecordDto callRecordDto=callRecordMapper.transClient(callRecord);
+        assertEquals(record1.callerPhoneNumber, callRecordBoundaryIn.findCallRecordById(2).callerPhoneNumber);
+
+
+    }
+    @Test
+    public void cr_reader(){
+        List<CallRecord>callRecordList=new ArrayList<>();
+        CallRecord record1 = new CallRecord("00000","22222","1988-06-10",10,null,(float)0);
+        record1.id_callRecord=1;
+        CallRecord record2 = new CallRecord("00000","22222","1988-06-10",10,null,(float)0);
+        record2.id_callRecord=2;
+        CallRecord record3 = new CallRecord("00000","22222","1988-06-10",10,null,(float)0);
+        record3.id_callRecord=3;
+        CallRecord record4 = new CallRecord("00000","22222","1988-06-10",10,null,(float)0);
+        record4.id_callRecord=4;
+        CallRecord record5 = new CallRecord("50000","92222","1988-06-10",10,null,(float)0);
+        record5.id_callRecord=5;
+        callRecordList.add(record1);
+        callRecordList.add(record2);
+        callRecordList.add(record3);
+        callRecordList.add(record4);
+        callRecordList.add(record5);
+        CRReader.filename="callrecordslist.txt";
+        List<CallRecord>lis2=CRReader.readfilecdr();
+
+        assertEquals(callRecordList.get(0).id_callRecord, lis2.get(0).id_callRecord);
+
+
+    }
+    @Test
+    public void cr_reader_exc(){
+        ICDRRepository icdrRepository=new FileCDRRepository();
+
+        CRReader.filename="callrecordslist2.txt";
+        //List<CallRecord>lis2=CRReader.readfilecdr();
+        assertEquals(null, CRReader.readfilecdr());
     }
 
 
+    /*@Test
+    public void cr_readercalccost(){
 
-    @Test
-    public void createCDRList(){
-        CDRService CDR=new CDRService();
-        Client client = new Client();
-        client.address="asd";
-        client.ci = "12345";
-        List<String> friends = new ArrayList<>();//friendgetterfromClient through Phone number
-        friends.add("60774491");
+        //CRReader.filename="cr.txt";
+        //List<CallRecord>callRecordList=new ArrayList<>();
+        CRReader.filename="cdr.txt";
+        List<CallRecord>callRecordList=CRReader.readfilecdr();
 
-        IPlanClient plan = new PlanClientPostpago(client, "00000000", friends);
-        CallRecord record = new CallRecord();
-        record.id_callRecord =1;
-        record.callDuration = (float)60;
-        record.callerPhoneNumber = "00000000";
-        record.endPointPhoneNumber = "60774491";
-        record.startingCallTime = 4;
+       // List<CallRecord>lis=new ArrayList<>();
+       // callRecordList=CRReader.readfilecdr();
+        //lis2=CRReader.callRecords;
+        //CRReader.rateAllRecords();
+        Float expect=(float)0.0;
+        //Float expected = (float)42.0;
 
-        CallRecord record1 = new CallRecord();
-        record1.id_callRecord =2;
-        record1.callDuration = (float)60;
-        record1.callerPhoneNumber = "00000000";
-        record1.endPointPhoneNumber = "60774491";
-        record1.startingCallTime = 4;
-
-        CallRecord record2 = new CallRecord();
-        record1.id_callRecord =3;
-        record1.callDuration = (float)60;
-        record1.callerPhoneNumber = "00000000";
-        record1.endPointPhoneNumber = "60774491";
-        record1.startingCallTime = 4;
-        RepositoryClientPlan.add(plan);
-        record1.calculateCost();
-        CDR.addCDR(record);
-        CDR.addCDR(record1);
-        CDR.addCDR(record2);
-       assertEquals(false, CDR.FindCDRbyId(4));
+        assertEquals(1, callRecordList.get(0).id_callRecord);
 
 
     }*/
+
+
 }

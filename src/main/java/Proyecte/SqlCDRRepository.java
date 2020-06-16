@@ -29,6 +29,11 @@ public class SqlCDRRepository implements ICDRRepository {
         return null;
     }
 
+    @Override
+    public List<CallRecord> getCallRecordsByPhoneNumber(String phoneNumber) {
+        return null;
+    }
+
     /*
         @Override
         public CallRecord getCallRecordById() {

@@ -11,7 +11,7 @@ public class CallRecordDto {
     public final Float callCost;
     public final String savedDate;
 
-     CallRecordDto(int id_callRecord, String callerPhoneNumber, String endPointPhoneNumber, String date, Integer startingCallTime, Float callDuration, Float callCost, String savedDate) {
+     public CallRecordDto(int id_callRecord, String callerPhoneNumber, String endPointPhoneNumber, String date, Integer startingCallTime, Float callDuration, Float callCost, String savedDate) {
         this.id_callRecord = id_callRecord;
         this.callerPhoneNumber = callerPhoneNumber;
         this.endPointPhoneNumber = endPointPhoneNumber;

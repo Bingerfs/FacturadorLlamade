@@ -5,7 +5,7 @@ public class ClientDto {
     public final String address;
     public final String ci;
     
-    ClientDto(String name, String address, String ci){
+    public ClientDto(String name, String address, String ci){
         this.name= name;
         this.address=address;
         this.ci=ci;
