@@ -1,7 +1,15 @@
 package Proyecte;
 
-import Proyecte.callRecord.*;
-import Proyecte.client.Client;
+import Proyecte.ApplicationLogic.BoundaryGateways.CallRecordBoundaryIn;
+import Proyecte.ApplicationLogic.BoundaryGateways.CallRecordBoundaryOut;
+import Proyecte.ApplicationLogic.BoundaryGateways.ICDRRepository;
+import Proyecte.ApplicationLogic.DTOMappers.CallRecordDto;
+import Proyecte.ApplicationLogic.DTOMappers.CallRecordMapper;
+import Proyecte.ApplicationLogic.UseCases.CallRecordService;
+import Proyecte.EnterpriseLogic.CallRecord;
+import Proyecte.InterfaceAdapters.GatewayImpl.File.FileCDRRepository;
+import Proyecte.InterfaceAdapters.Presenters.CallRecordPresenter;
+import Proyecte.InterfaceAdapters.Utils.CRReader;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -132,7 +140,7 @@ public class CDRTest {
         callRecordList.add(record4);
         callRecordList.add(record5);
         CRReader.filename="callrecordslist.txt";
-        List<CallRecord>lis2=CRReader.readfilecdr();
+        List<CallRecord>lis2= CRReader.readfilecdr();
 
         assertEquals(callRecordList.get(0).id_callRecord, lis2.get(0).id_callRecord);
 

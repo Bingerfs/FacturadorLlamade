@@ -1,12 +1,16 @@
 package Proyecte;
 
-import Proyecte.callRecord.*;
-import Proyecte.client.*;
+import Proyecte.ApplicationLogic.BoundaryGateways.ClientBoundaryIn;
+import Proyecte.ApplicationLogic.DTOMappers.ClientDto;
+import Proyecte.ApplicationLogic.DTOMappers.ClientMapper;
+import Proyecte.ApplicationLogic.UseCases.ClientService;
+import Proyecte.EnterpriseLogic.Client;
+import Proyecte.InterfaceAdapters.GatewayImpl.File.FileClientRepository;
+import Proyecte.InterfaceAdapters.Presenters.ClientPresenter;
+import Proyecte.InterfaceAdapters.Utils.JsonUtil;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 public class ClientTest {

@@ -4,7 +4,16 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.*;
 
-import Proyecte.client.Client;
+import Proyecte.ApplicationLogic.BoundaryGateways.IAccountRepository;
+import Proyecte.ApplicationLogic.BoundaryGateways.IClientRepository;
+import Proyecte.EnterpriseLogic.Account;
+import Proyecte.EnterpriseLogic.Client;
+import Proyecte.EnterpriseLogic.FriendsReceivable;
+import Proyecte.EnterpriseLogic.Receivable;
+import Proyecte.ApplicationLogic.DTOMappers.AccountDto;
+import Proyecte.ApplicationLogic.DTOMappers.AccountMapper;
+import Proyecte.InterfaceAdapters.GatewayImpl.File.FileAccountRepository;
+import Proyecte.InterfaceAdapters.GatewayImpl.File.FileClientRepository;
 import org.junit.Test;
 import java.util.List;
 
@@ -69,7 +78,7 @@ public class AccountTest {
         account.AddReceivable(res1);
         IAccountRepository accountRepository = new FileAccountRepository("Accounts.txt","Receivables.txt",new FileClientRepository("clientangos.txt"));
         accountRepository.createAccount(account);
-        assertEquals("Prepago", accountRepository.getAccountByPhoneNumber("60774491").accoundType);
+        assertEquals("Prepago", accountRepository.getAccountByPhoneNumber("60774492").accoundType);
 
     }
     @Test
